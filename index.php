@@ -19,7 +19,7 @@
 			</div>
 		</nav>
 		<section style="margin-top: 150px">
-			<form class=" border rounded p-4 bg-light-75" method="post" action="">
+			<form class=" border rounded p-4" method="post" action="" style="background-color: #ccc;">
 	   			<h1 class="text-center pb-4">Controle de Faturamento a receber</h1>
 	   			<div class="row"><!-- Linha 01 -->
 	   				<div class="col"><!-- Coluna 01 -->
@@ -49,7 +49,7 @@
 	   				<div class="col"><!-- Coluna 05 -->
 	   					<div class="form-group">
 	   						<label class="font-weight-bold" for="convenio">Valor R$:</label>
-	   						<input class="form-control" type="text" name="valor" autocomplete="off">
+	   						<input class="form-control" type="money" name="valor" autocomplete="off">
 	   					</div>
 	   				</div><!-- Fim coluna 05 -->
 	   			</div><!-- Fim linha 01 -->
@@ -113,20 +113,31 @@
    	</div>
 
    	<?php
-
+   		$convenio = $_POST['convenio'];
+   		$nFatura = intval($_POST['nFatura']);
+   		$nFaturamento = intval($_POST['nFaturamento']);
+   		$dtFechamento = $_POST['dtFechamento'];
+   		$valor = floatval(str_replace(",",".", str_replace(".","",$_POST['valor'])));
+   		$dtPossivelPagamento = $_POST['dtPossivelPagamento'];
+   		$dtPagamento = $_POST['dtPagamento'];
 		$pago = $_POST['pago'];
 		$conciliado = $_POST['conciliado'];
+		$valorPago = floatval(str_replace(",",".", str_replace(".","",$_POST['valorPago'])));
+		$valorGlosa = floatval(str_replace(",",".", str_replace(".","",$_POST['valorGlosa'])));
+		
 
 		if ($pago == "" || $conciliado == "") { ?>
-			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			<div class=" container alert alert-warning alert-dismissible fade show text-center" role="alert">
 				  Os campos pago e conciliado não pode ser vazio.
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				    <span aria-hidden="true">&times;</span>
 				  </button>
 			</div>
 		<?php } else{
-			echo $pago . '<br>';
-			echo $conciliado;
+			echo "<pre>";
+			var_dump($valor) . '<br>';
+			var_dump($valorPago) . '<br>';
+			var_dump($valorGlosa) . '<br>';
 		} ?>	
 
     <!-- Optional JavaScript -->
