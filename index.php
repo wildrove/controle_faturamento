@@ -13,6 +13,7 @@
 
 	require 'vendor/autoload.php';
 	use Classes\DBConnection\DBConnection;
+	use Classes\Faturamento\ControleFaturamento\ControleFaturamento;
 		
 ?>   	
 
@@ -37,7 +38,7 @@
 			</div>
 		</nav>
 		<section style="margin-top: 150px">
-			<form class=" border rounded p-4 shadow-lg" method="post" action="" style="background-color: #ccc;">
+			<form class=" border rounded p-4 shadow-lg" method="post" action="#" style="background-color: #ccc;">
 	   			<h1 class="text-center pb-4">Controle de Faturamento a receber</h1>
 	   			<div class="row"><!-- Linha 01 -->
 	   				<div class="col"><!-- Coluna 01 -->
@@ -129,6 +130,7 @@
 	   		</form>	
 		</section>	
    	</div>
+
 
    
     <!-- Optional JavaScript -->
