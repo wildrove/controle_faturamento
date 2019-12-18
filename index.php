@@ -10,6 +10,9 @@
 	$conciliado = $_POST['conciliado'];
 	$valorPago = floatval(str_replace(",",".", str_replace(".","",$_POST['valorPago'])));
 	$valorGlosa = floatval(str_replace(",",".", str_replace(".","",$_POST['valorGlosa'])));
+
+	require 'vendor/autoload.php';
+	use Classes\DBConnection\DBConnection;
 		
 ?>   	
 
