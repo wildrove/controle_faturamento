@@ -1,18 +1,3 @@
-<?php
-   	$convenio = ucfirst($_POST['convenio']);
-   	$nFatura = intval($_POST['nFatura']);
-   	$nFaturamento = intval($_POST['nFaturamento']);
-   	$dtFechamento = $_POST['dtFechamento'];
-   	$valor = floatval(str_replace(",",".", str_replace(".","",$_POST['valor'])));
-   	$dtPossivelPagamento = $_POST['dtPossivelPagamento'];
-   	$dtPagamento = $_POST['dtPagamento'];
-	$pago = $_POST['pago'];
-	$conciliado = $_POST['conciliado'];
-	$valorPago = floatval(str_replace(",",".", str_replace(".","",$_POST['valorPago'])));
-	$valorGlosa = floatval(str_replace(",",".", str_replace(".","",$_POST['valorGlosa'])));
-		
-?>   	
-
 
 <html lang="pt-br">
   <head>
@@ -34,7 +19,7 @@
 			</div>
 		</nav>
 		<section style="margin-top: 150px">
-			<form class=" border rounded p-4 shadow-lg" method="post" action="" style="background-color: #ccc;">
+			<form class=" border rounded p-4 shadow-lg" method="post" action="Actions/saveRevenues.php" style="background-color: #ccc;">
 	   			<h1 class="text-center pb-4">Controle de Faturamento a receber</h1>
 	   			<div class="row"><!-- Linha 01 -->
 	   				<div class="col"><!-- Coluna 01 -->
@@ -86,7 +71,7 @@
 	   					<div class="form-group">
 	   						<label class="font-weight-bold" for="convenio">Pago? (S/N)</label>
 	   						<select class="form-control" name="pago" required="">
-	   							<option value=""></option>
+	   							<option value="" selected=""></option>
 	   							<option class="font-weight-bold" value="SIM">SIM</option>
 	   							<option class="font-weight-bold" value="NÃO">NÃO</option>
 	   						</select>
@@ -96,7 +81,7 @@
 	   					<div class="form-group">
 	   						<label class="font-weight-bold" for="convenio">Conciliado? (S/N)</label>
 	   						<select class="form-control" name="conciliado" required="">
-	   							<option value=""></option>
+	   							<option value="" selected=""></option>
 	   							<option class="font-weight-bold" value="SIM">SIM</option>
 	   							<option class="font-weight-bold" value="NÃO">NÃO</option>
 	   						</select>
@@ -119,14 +104,14 @@
 	   				</div><!-- Fim coluna 11 -->
 	   				<div class="col-3"><!-- Coluna 12 -->
 	   					<div class="form-group">
-	   						<button class="btn btn-primary form-control" type="submit" style="margin-top: 30px">Cadastrar</button>
+	   						<input class="btn btn-primary form-control" type="submit" value="Cadastrar" style="margin-top: 33px">
 	   					</div>
 	   				</div><!-- Fim coluna 12 -->
 	   			</div><!-- Fim linha 03 -->
 	   		</form>	
 		</section>	
    	</div>
-
+   	
    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
