@@ -71,18 +71,28 @@ namespace Classes\Faturamento\ControleFaturamento;
 			return intval($lastId);
 		}
 
-		public function selectAllRevenue()
+		public function selectAllRevenue($page, $limit)
 		{
 			try{
-				$sql = "SELECT * FROM controle_faturamento.tb_controle ORDER BY ID_CONTROLE ASC";
+				$sql = "SELECT * FROM controle_faturamento.tb_controle ORDER BY ID_CONTROLE ASC LIMIT $page, $limit";
 				$data = $this->connection->conn->prepare($sql);
 				$data->execute();
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
 				return $result;
-				
+
 			}catch(Exception $e){
 				echo $e->getMessage();
 			}
+		}
+
+		public function getTotalRevenues()
+		{
+			$sql = "SELECT * FROM Controle_faturamento.tb_controle";
+			$data = $this->connection->conn->prepare($sql);
+			$data->execute();
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+			return $result = count($result);
 		}
 	}
