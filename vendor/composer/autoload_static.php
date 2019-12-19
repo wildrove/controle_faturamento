@@ -20,11 +20,17 @@ class ComposerStaticInitb01ee8baa378dc771aa39e7bcc58bdd4
         ),
     );
 
+    public static $classMap = array (
+        'Classes\\DBConnection\\DBConnection' => __DIR__ . '/../..' . '/Classes/DBConnection/DBConnection.php',
+        'Classes\\Faturamento\\ControleFaturamento\\ControleFaturamento' => __DIR__ . '/../..' . '/Classes/Faturamento/ControleFaturamento.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitb01ee8baa378dc771aa39e7bcc58bdd4::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitb01ee8baa378dc771aa39e7bcc58bdd4::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb01ee8baa378dc771aa39e7bcc58bdd4::$classMap;
 
         }, null, ClassLoader::class);
     }

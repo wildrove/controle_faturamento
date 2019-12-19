@@ -16,7 +16,6 @@ namespace Classes\DBConnection;
 
 				$this->conn = new \PDO("$driverName:host=$hostName; dbName=$dbName", $userName, $pass);
 				$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				echo "<h1>Conectado com sucesso!</h1>";
 
 			}catch(PDOException $e){
 
