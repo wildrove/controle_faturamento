@@ -21,6 +21,7 @@
 			$arrayRevenues = is_array($_POST) ? $_POST : false;
 		}
 
+		// valida se os campos de select não estão vazios.
 		foreach ($arrayRevenues as  $value) {
 			if (empty($arrayRevenues['pago']) || empty($arrayRevenues['conciliado'])) {
 				header("Location: ../alerts/inputEmpty.html");
@@ -32,6 +33,7 @@
 
 		$insertedRevenue = $revenue->saveRevenue($arrayRevenues);
 
+		// valida atrvés do ultimo ID se os dados foram inseridos corretamente.
 		if (count($insertedRevenue) > 0) {
 			header("Location: ../alerts/revenueInserted.html");
 		}else{
