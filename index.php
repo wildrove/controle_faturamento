@@ -71,7 +71,7 @@
 	   					<div class="form-group">
 	   						<label class="font-weight-bold" for="convenio">Pago? (S/N)</label>
 	   						<select class="form-control" name="pago" required="">
-	   							<option value=""></option>
+	   							<option value="" selected=""></option>
 	   							<option class="font-weight-bold" value="SIM">SIM</option>
 	   							<option class="font-weight-bold" value="NÃO">NÃO</option>
 	   						</select>
@@ -81,7 +81,7 @@
 	   					<div class="form-group">
 	   						<label class="font-weight-bold" for="convenio">Conciliado? (S/N)</label>
 	   						<select class="form-control" name="conciliado" required="">
-	   							<option value=""></option>
+	   							<option value="" selected=""></option>
 	   							<option class="font-weight-bold" value="SIM">SIM</option>
 	   							<option class="font-weight-bold" value="NÃO">NÃO</option>
 	   						</select>

@@ -2,6 +2,7 @@
 namespace Classes\Faturamento\ControleFaturamento;
 	
 	use Classes\DBConnection\DBConnection;
+	use PDO;
 	
 	class ControleFaturamento {
 
@@ -35,18 +36,38 @@ namespace Classes\Faturamento\ControleFaturamento;
 
 		public function saveRevenue(array $revenue)
 		{
+		
 			foreach ($revenue as  $value) {
-				$this->convenio = isset($value['convenio']) ? ucfirst($value['convenio']) : "";
-				$this->nFatura = isset($value['nFatura']) ? intval($value['nFatura']) : 0;
-				$this->nFaturamento = isset($value['nFaturamento']) ? intval($value['nFaturamento']) : 0;
-				$this->dtFechamento = isset($value['dtFechamento']) ? $value['dtFechamento'] : "";
-				$this->valor = isset($value['valor']) ? floatval(str_replace(",",".", str_replace(".","",$value['valor']))) : 0;
-				$this->dtPossivelPagamento = isset($value['dtPossivelPagamento']) ? $value['dtPossivelPagamento'] : "";
-				$this->dtPagamento = isset($value['dtPagamento']) ? $value['dtPagamento'] : "";
-				$this->pago = isset($value['pago']) ? strtoupper($value['pago']) : "";
-				$this->conciliado = isset($value['conciliado']) ? strtoupper($value['conciliado']) : "";
-				$this->valorPago = isset($value['valorPago']) ? floatval(str_replace(",",".", str_replace(".","",$value['valorPago']))) : 0;
-				$valorGlosa = isset($value['valorGlosa']) ? floatval(str_replace(",",".", str_replace(".","",$value['valorGlosa']))) : 0;
+				$this->convenio = isset($revenue['convenio']) ? ucfirst($revenue['convenio']) : "";
+				$this->nFatura = isset($revenue['nFatura']) ? intval($revenue['nFatura']) : 0;
+				$this->nFaturamento = isset($revenue['nFaturamento']) ? intval($revenue['nFaturamento']) : 0;
+				$this->dtFechamento = isset($revenue['dtFechamento']) ? $revenue['dtFechamento'] : "";
+				$this->valor = isset($revenue['valor']) ? floatval(str_replace(",",".", str_replace(".","",$revenue['valor']))) : 0;
+				$this->dtPossivelPagamento = isset($revenue['dtPossivelPagamento']) ? $revenue['dtPossivelPagamento'] : "";
+				$this->dtPagamento = isset($revenue['dtPagamento']) ? $revenue['dtPagamento'] : "";
+				$this->pago = isset($revenue['pago']) ? strtoupper($revenue['pago']) : "";
+				$this->conciliado = isset($revenue['conciliado']) ? strtoupper($revenue['conciliado']) : "";
+				$this->valorPago = isset($revenue['valorPago']) ? floatval(str_replace(",",".", str_replace(".","",$revenue['valorPago']))) : 0;
+				$this->valorGlosa = isset($revenue['valorGlosa']) ? floatval(str_replace(",",".", str_replace(".","",$revenue['valorGlosa']))) : 0;
 			}
+
+			$sql = "INSERT INTO controle_faturamento.tb_controle VALUES(NULL, :convenio, :nFatura, :nFaturamento , :dtFechamento, :valor, :dtPossivelPagamento, :dtPagamento, :pago, :conciliado, :valorPago, :valorGlosa)";
+
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(':convenio', $this->convenio, PDO::PARAM_STR);
+			$data->bindParam(':nFatura', $this->nFatura, PDO::PARAM_INT);
+			$data->bindParam(':nFaturamento', $this->nFaturamento, PDO::PARAM_INT);
+			$data->bindParam(':dtFechamento', $this->dtFechamento, PDO::PARAM_STR);
+			$data->bindParam(':valor', $this->valor);
+			$data->bindParam(':dtPossivelPagamento', $this->dtPossivelPagamento, PDO::PARAM_STR);
+			$data->bindParam(':dtPagamento', $this->dtPagamento, PDO::PARAM_STR);
+			$data->bindParam(':pago', $this->pago, PDO::PARAM_STR);
+			$data->bindParam(':conciliado', $this->conciliado, PDO::PARAM_STR);
+			$data->bindParam(':valorPago', $this->valorPago);
+			$data->bindParam(':valorGlosa', $this->valorGlosa);
+			$data->execute();
+			$lastId = $this->connection->conn->lastInsertId();
+
+			return intval($lastId);
 		}
 	}
