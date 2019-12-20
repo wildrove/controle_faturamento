@@ -38,7 +38,7 @@ namespace Classes\Faturamento\ControleFaturamento;
 		{
 		
 			foreach ($revenue as  $value) {
-				$this->convenio = isset($revenue['convenio']) ? ucfirst($revenue['convenio']) : "Não informado";
+				$this->convenio = isset($revenue['convenio']) ? mb_convert_case($revenue['convenio'], MB_CASE_TITLE, 'UTF-8') : "Não informado";
 				$this->nFatura = isset($revenue['nFatura']) ? intval($revenue['nFatura']) : 0;
 				$this->nFaturamento = isset($revenue['nFaturamento']) ? intval($revenue['nFaturamento']) : "-";
 				$this->dtFechamento = isset($revenue['dtFechamento']) ? $revenue['dtFechamento'] : "00-00-0000";
