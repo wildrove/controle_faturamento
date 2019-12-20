@@ -104,4 +104,16 @@ namespace Classes\Faturamento\ControleFaturamento;
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);
 			return $result;
 		}
+
+		public function validateNewRevenue($agreement, $revenueNum)
+		{
+			$sql = "SELECT CONVENIO, NUM_FATURA FROM controle_faturamento.tb_controle WHERE NUM_FATURA = ? AND CONVENIO = ?";
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(1, $revenueNum, PDO::PARAM_INT);
+			$data->bindParam(2, $agreement, PDO::PARAM_STR);
+			$data->execute();
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+			return $result;
+		}
 	}

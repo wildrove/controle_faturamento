@@ -31,10 +31,23 @@
 
 	*/	
 		$arrayRevenues = is_array($_POST) ? $_POST : false;
+		$agreement = !empty($_POST['convenio']) ? $_POST['convenio'] : "";
+		$revenueNum = !empty($_POST['nFatura']) ? intval($_POST['nFatura']) : 0; 
 
 		// Verifica se os campos data são vazios e atribui uma data padrão.
 
 		$revenue = new ControleFaturamento();
+
+		
+		$validate = $revenue->validateNewRevenue($agreement, $revenueNum);
+
+		if (count($validate) != 0) {
+			header("Location: ../alerts/validateRevenue.html");
+			exit();
+		}else{
+			echo "Fatura nova !";
+			exit();
+		}
 
 		$insertedRevenue = $revenue->saveRevenue($arrayRevenues);
 
