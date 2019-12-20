@@ -17,6 +17,11 @@
 			<div class="navbar-brand img-fluid img-nav">
 				<img src="./img/hospital-header-logo.png" width="" height="">
 			</div>
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link text-light" href="Actions/revenueList.php">Visualizar Faturamento</a>
+				</li>
+			</ul>
 		</nav>
 		<section style="margin-top: 150px">
 			<form class=" border rounded p-4 shadow-lg" method="post" action="Actions/saveRevenues.php" style="background-color: #ccc;">
@@ -43,13 +48,13 @@
 	   				<div class="col"><!-- Coluna 04 -->
 	   					<div class="form-group">
 	   						<label class="font-weight-bold" for="convenio">Data Fechamento:</label>
-	   						<input class="form-control" type="date" min="1900-01-01" max="2200-01-01" name="dtFechamento" autocomplete="off" required="">
+	   						<input class="form-control" type="date" min="1900-01-01" max="2200-01-01" name="dtFechamento" autocomplete="off">
 	   					</div>
 	   				</div><!-- Fim coluna 04 -->
 	   				<div class="col"><!-- Coluna 05 -->
 	   					<div class="form-group">
 	   						<label class="font-weight-bold" for="convenio">Valor R$:</label>
-	   						<input class="form-control" type="money" name="valor" autocomplete="off" required="">
+	   						<input class="form-control" type="text" name="valor" autocomplete="off">
 	   					</div>
 	   				</div><!-- Fim coluna 05 -->
 	   			</div><!-- Fim linha 01 -->
@@ -58,19 +63,19 @@
 	   				<div class="col"><!-- Coluna 06 -->
 	   					<div class="form-group">
 	   						<label class="font-weight-bold" for="convenio">Data Possível Pagamento:</label>
-	   						<input class="form-control" type="date" min="1900-01-01" max="2200-01-01" name="dtPossivelPagamento" autocomplete="off" required="">
+	   						<input class="form-control" type="date" min="1900-01-01" max="2200-01-01" name="dtPossivelPagamento" autocomplete="off" >
 	   					</div>
 	   				</div><!-- Fim coluna 06 -->
 	   				<div class="col"><!-- Coluna 07 -->
 	   					<div class="form-group">
 	   						<label class="font-weight-bold" for="convenio">Data Pagamento:</label>
-	   						<input class="form-control" type="date" min="1900-01-01" max="2200-01-01" name="dtPagamento" autocomplete="off" required="">
+	   						<input class="form-control" type="date" min="1900-01-01" max="2200-01-01" name="dtPagamento" autocomplete="off" >
 	   					</div>
 	   				</div><!-- Fim coluna 07 -->
 	   				<div class="col"><!-- Coluna 08 -->
 	   					<div class="form-group">
 	   						<label class="font-weight-bold" for="convenio">Pago? (S/N)</label>
-	   						<select class="form-control" name="pago" required="">
+	   						<select class="form-control" name="pago">
 	   							<option value="" selected=""></option>
 	   							<option class="font-weight-bold" value="SIM">SIM</option>
 	   							<option class="font-weight-bold" value="NÃO">NÃO</option>
@@ -80,7 +85,7 @@
 	   				<div class="col"><!-- Coluna 09 -->
 	   					<div class="form-group">
 	   						<label class="font-weight-bold" for="convenio">Conciliado? (S/N)</label>
-	   						<select class="form-control" name="conciliado" required="">
+	   						<select class="form-control" name="conciliado">
 	   							<option value="" selected=""></option>
 	   							<option class="font-weight-bold" value="SIM">SIM</option>
 	   							<option class="font-weight-bold" value="NÃO">NÃO</option>
@@ -93,13 +98,13 @@
 	   				<div class="col-3"><!-- Coluna 10 -->
 	   					<div class="form-group">
 	   						<label class="font-weight-bold" for="convenio">Valor Pago R$:</label>
-	   						<input class="form-control" type="text" name="valorPago" autocomplete="off" required="">
+	   						<input class="form-control" type="text" name="valorPago" autocomplete="off">
 	   					</div>
 	   				</div><!-- Fim coluna 10 -->
 	   				<div class="col-3"><!-- Coluna 11 -->
 	   					<div class="form-group">
 	   						<label class="font-weight-bold" for="convenio">Valor de Glosa R$:</label>
-	   						<input class="form-control" type="text" name="valorGlosa" autocomplete="off" required="">
+	   						<input class="form-control" type="text" name="valorGlosa" autocomplete="off">
 	   					</div>
 	   				</div><!-- Fim coluna 11 -->
 	   				<div class="col-3"><!-- Coluna 12 -->

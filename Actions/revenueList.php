@@ -1,19 +1,16 @@
 <?php
-	
-	require '../vendor/autoload.php';
-	use Classes\DBConnection\DBConnection;
-	use Classes\Faturamento\ControleFaturamento\ControleFaturamento;
-
-
 
    // pega a pagina atual
-	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 0;
+	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 	//itens por página
-	$itemsPerPage = 5;
+	$itemsPerPage = 10;
    	// calcula o inicio da consulta
 	$start = ($currentPage * $itemsPerPage) - $itemsPerPage;
+	
+	require '../vendor/autoload.php';
+	use Classes\Faturamento\ControleFaturamento\ControleFaturamento;
 
- 	$listRevenue = new ControleFaturamento();
+	$listRevenue = new ControleFaturamento();
    
    	// função de consulta no banco
 	$resultPage = $listRevenue->selectAllRevenue($start, $itemsPerPage);
@@ -26,7 +23,6 @@
 
 	$previousPage = $currentPage -1;
 	$nextPage = $currentPage + 1;
-
      
 	?>
 	<!DOCTYPE html>
@@ -44,6 +40,16 @@
 	  <script src="../bootstrap/js/bootstrap.min.js"></script>
 	</head>
 		<body>
+			<nav class="navbar navbar-expand-lg fixed-top navbar-header">
+				<div class="navbar-brand img-fluid img-nav">
+					<img src="../img/hospital-header-logo.png" width="" height="">
+				</div>
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						
+					</li>
+				</ul>
+			</nav>
 			<div class="container-fluid">
             <h1 class="text-center mb-3" style="margin-top: 140px">Controle Faturamento</h1>    
             <div>
@@ -55,44 +61,47 @@
 			    			</div>
 			    			<div class="form-group">
 			    				<button type="submit" class="btn btn-primary border rounded-left-0">Pesquisar</button>
-			    				<a href="" class="btn btn-primary" id="" name="export">Exportar</a>
+			    				<a href="exportXls.php" class="btn btn-primary" id="" name="export">Exportar</a>
 			    			</div>
 			    		</form>
 			    	</div>
 			        <thead class="thead-dark">
 			          <tr class="text-center" style="font-size: 15px">
-			            <th scope="col" class="border-right">ID</th>
-			            <th scope="col" class="border-right">CONVÊNIO</th>
-			            <th scope="col" class="border-right">Nº FATURA</th>
-			            <th scope="col" class="border-right">Nº FATURAMENTO</th>
-			            <th scope="col" class="border-right">DATA FECHAMENTO</th>
-			            <th scope="col" class="border-right">VALOR</th>
-			            <th scope="col" class="border-right">POSSIVEL PAGAMENTO</th>
-			            <th scope="col" class="border-right">DATA PAGAMENTO</th>
-			            <th scope="col" class="border-right">PAGO</th>
-			            <th scope="col" class="border-right">CONCILIADO</th>
-			            <th scope="col" class="border-right">VALOR PAGO</th>
-			            <th scope="col" class="border-right">VALOR GLOSA</th>
+			            <!--<th scope="col" class="border-right">ID</th>-->
+			            <th scope="col" class="border-right">Convênio</th>
+			            <th scope="col" class="border-right">Nº Fatura</th>
+			            <th scope="col" class="border-right">Nº Faturamento</th>
+			            <th scope="col" class="border-right">Data Fechamento</th>
+			            <th scope="col" class="border-right">Valor</th>
+			            <th scope="col" class="border-right">Possivel Pagamento</th>
+			            <th scope="col" class="border-right">Data Pagamento</th>
+			            <th scope="col" class="border-right">Pago</th>
+			            <th scope="col" class="border-right">Conciliado</th>
+			            <th scope="col" class="border-right">Valor Pago</th>
+			            <th scope="col" class="border-right">Valor Glosa</th>
 			          </tr>
 			        </thead>
 			        <tbody>
 			        <?php 
-			        foreach($resultPage as $rowUser) {
-
+			        foreach($resultPage as $value) {
+			        		
+			        		$dtPag = $value['DT_PAGAMENTO'] == "0000-00-00" ? "-" : date("d-m-Y", strtotime($value['DT_PAGAMENTO']));
+							$dtPossivel = $value['DT_POSSIVEL_PAGAMENTO'] == "0000-00-00" ? "-" : date("d-m-Y", strtotime($value['DT_POSSIVEL_PAGAMENTO']));
+							$dtFecham = $value['DT_FECHAMENTO'] == "0000-00-00" ? "-" : date("d-m-Y", strtotime($value['DT_FECHAMENTO']));
 			            ?>
 			            <tr class="text-center border font-italic" id="dvData">
-			              <th scope="row" class="border-right "><?php echo $rowUser['ID_CONTROLE']; ?></th>
-			              <td class="border-right"><?php echo utf8_decode($rowUser['CONVENIO']); ?></td>
-			              <td class="border-right"><?php echo $rowUser['NUM_FATURA']; ?></td>
-			              <td class="border-right"><?php echo $rowUser['NUM_FATURAMENTO']; ?></td>
-			              <td class="border-right"><?php echo $rowUser['DT_FECHAMENTO']; ?></td>
-			              <td class="border-right"><?php echo $rowUser['VALOR']; ?></td>
-			              <td class="border-right"><?php echo $rowUser['DT_POSSIVEL_PAGAMENTO']; ?></td>
-			              <td class="border-right"><?php echo $rowUser['DT_PAGAMENTO']; ?></td>
-			              <td class="border-right"><?php echo $rowUser['PAGO']; ?></td>
-			              <td class="border-right"><?php echo $rowUser['CONCILIADO']; ?></td>
-			              <td class="border-right"><?php echo $rowUser['VL_PAGO']; ?></td>
-			              <td class="border-right"><?php echo $rowUser['VL_GLOSA']; ?></td>
+			              <!--<th scope="row" class="border-right "><?php echo $value['ID_CONTROLE']; ?></th>-->
+			              <td class="border-right"><?php echo $value['CONVENIO']; ?></td>
+			              <td class="border-right"><?php echo $value['NUM_FATURA']; ?></td>
+			              <td class="border-right"><?php echo $value['NUM_FATURAMENTO']; ?></td>
+			              <td class="border-right"><?php  echo $dtFecham; ?></td>
+			              <td class="border-right"><?php echo "R$ " . str_replace(".", ",", strval($value['VALOR'])); ?></td>
+			              <td class="border-right"><?php echo $dtPossivel; ?></td>
+			              <td class="border-right"><?php echo $dtPag; ?></td>
+			              <td class="border-right"><?php if($value['PAGO'] == ""){echo "Não informado";} echo $value['PAGO']; ?></td>
+			              <td class="border-right"><?php if($value['CONCILIADO'] == ""){echo "Não informado";} echo $value['CONCILIADO']; ?></td>
+			              <td class="border-right"><?php echo "R$ " . str_replace(".", ",", strval($value['VL_PAGO'])); ?></td>
+			              <td class="border-right"><?php echo "R$ " . str_replace(".", ", " ,strval($value['VL_GLOSA'])); ?></td>
 			            </tr>
 			            <?php
 			        	}?>
@@ -139,7 +148,7 @@
 					     </li>
 					</ul>
 				</nav>
-				<a class="btn btn-primary  mb-5 shadow-lg" href="">Voltar</a>
+				<a class="btn btn-primary  mb-5 shadow-lg" href="../index.php">Voltar</a>
 			</div>
 	</body>
 </html>

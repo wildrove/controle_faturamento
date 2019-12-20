@@ -14,7 +14,7 @@
 		$result = count(array_diff($arrayValue, $arrayNumber));
 		/* ========================================= */
 
-		if ($result != 0) {
+	/*	if ($result != 0) {
 			header("Location: ../alerts/invalidMoneyType.html");
 			exit();
 		}else{
@@ -28,6 +28,11 @@
 				exit();
 			}
 		}
+
+	*/	
+		$arrayRevenues = is_array($_POST) ? $_POST : false;
+
+		// Verifica se os campos data são vazios e atribui uma data padrão.
 
 		$revenue = new ControleFaturamento();
 

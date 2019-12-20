@@ -38,15 +38,15 @@ namespace Classes\Faturamento\ControleFaturamento;
 		{
 		
 			foreach ($revenue as  $value) {
-				$this->convenio = isset($revenue['convenio']) ? ucfirst($revenue['convenio']) : "";
+				$this->convenio = isset($revenue['convenio']) ? ucfirst($revenue['convenio']) : "Não informado";
 				$this->nFatura = isset($revenue['nFatura']) ? intval($revenue['nFatura']) : 0;
-				$this->nFaturamento = isset($revenue['nFaturamento']) ? intval($revenue['nFaturamento']) : 0;
-				$this->dtFechamento = isset($revenue['dtFechamento']) ? $revenue['dtFechamento'] : "";
+				$this->nFaturamento = isset($revenue['nFaturamento']) ? intval($revenue['nFaturamento']) : "-";
+				$this->dtFechamento = isset($revenue['dtFechamento']) ? $revenue['dtFechamento'] : "00-00-0000";
 				$this->valor = isset($revenue['valor']) ? floatval(str_replace(",",".", str_replace(".","",$revenue['valor']))) : 0;
-				$this->dtPossivelPagamento = isset($revenue['dtPossivelPagamento']) ? $revenue['dtPossivelPagamento'] : "";
-				$this->dtPagamento = isset($revenue['dtPagamento']) ? $revenue['dtPagamento'] : "";
-				$this->pago = isset($revenue['pago']) ? strtoupper($revenue['pago']) : "";
-				$this->conciliado = isset($revenue['conciliado']) ? strtoupper($revenue['conciliado']) : "";
+				$this->dtPossivelPagamento = isset($revenue['dtPossivelPagamento']) ? $revenue['dtPossivelPagamento'] : "00-00-0000";
+				$this->dtPagamento = isset($revenue['dtPagamento']) ? $revenue['dtPagamento'] : "00-00-0000";
+				$this->pago = isset($revenue['pago']) ? strtoupper($revenue['pago']) : "Não informado";
+				$this->conciliado = isset($revenue['conciliado']) ? strtoupper($revenue['conciliado']) : "Não informado";
 				$this->valorPago = isset($revenue['valorPago']) ? floatval(str_replace(",",".", str_replace(".","",$revenue['valorPago']))) : 0;
 				$this->valorGlosa = isset($revenue['valorGlosa']) ? floatval(str_replace(",",".", str_replace(".","",$revenue['valorGlosa']))) : 0;
 			}
@@ -94,5 +94,14 @@ namespace Classes\Faturamento\ControleFaturamento;
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
 			return $result = count($result);
+		}
+
+		public function exportXls()
+		{
+			$sql = "SELECT  * FROM controle_faturamento.tb_controle ORDER BY ID_CONTROLE ASC";
+			$data = $this->connection->conn->prepare($sql);
+			$data->execute();
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+			return $result;
 		}
 	}
