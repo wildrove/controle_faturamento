@@ -7,6 +7,7 @@ namespace Classes\Faturamento\ControleFaturamento;
 	class ControleFaturamento {
 
 		public $connection = null;
+		private $idControle;
 		private $convenio;
 		private $nFatura;
 		private $nFaturamento;
@@ -36,8 +37,9 @@ namespace Classes\Faturamento\ControleFaturamento;
 
 		public function saveRevenue(array $revenue)
 		{
-		
+			
 			foreach ($revenue as  $value) {
+				$this->idControle = array_key_exists("idControle", $revenue) ? intval($revenue['idControle']) : 0;
 				$this->convenio = isset($revenue['convenio']) ? mb_convert_case($revenue['convenio'], MB_CASE_TITLE, 'UTF-8') : "Não informado";
 				$this->nFatura = isset($revenue['nFatura']) ? intval($revenue['nFatura']) : 0;
 				$this->nFaturamento = isset($revenue['nFaturamento']) ? intval($revenue['nFaturamento']) : "-";
@@ -51,9 +53,31 @@ namespace Classes\Faturamento\ControleFaturamento;
 				$this->valorGlosa = isset($revenue['valorGlosa']) ? floatval(str_replace(",",".", str_replace(".","",$revenue['valorGlosa']))) : 0;
 			}
 
-			$sql = "INSERT INTO controle_faturamento.tb_controle VALUES(NULL, :convenio, :nFatura, :nFaturamento , :dtFechamento, :valor, :dtPossivelPagamento, :dtPagamento, :pago, :conciliado, :valorPago, :valorGlosa)";
 
-			$data = $this->connection->conn->prepare($sql);
+			$sqlEdit = "UPDATE controle_faturamento.tb_controle
+					SET CONVENIO = ?,
+						NUM_FATURA = ?,
+						NUM_FATURAMENTO = ?,
+						DT_FECHAMENTO = ?,
+						VALOR = ?,
+						DT_POSSIVEL_PAGAMENTO = ?,
+						DT_PAGAMENTO = ?,
+						PAGO = ?,
+						CONCILIADO = ?,
+						VL_PAGO = ?,
+						VL_GLOSA = ?
+					WHERE ID_CONTROLE = $this->idControle";
+
+			$sqlInsert = "INSERT INTO controle_faturamento.tb_controle VALUES(NULL, :convenio, :nFatura, :nFaturamento , :dtFechamento, :valor, :dtPossivelPagamento, :dtPagamento, :pago, :conciliado, :valorPago, :valorGlosa)";
+
+			$data = null;
+
+			if($this->idControle > 0 ){
+				$data = $this->connection->conn->prepare($sqlEdit);
+			}else{
+				$data = $this->connection->conn->prepare($sqlInsert);
+			}
+
 			$data->bindParam(':convenio', $this->convenio, PDO::PARAM_STR);
 			$data->bindParam(':nFatura', $this->nFatura, PDO::PARAM_INT);
 			$data->bindParam(':nFaturamento', $this->nFaturamento, PDO::PARAM_INT);
@@ -66,9 +90,15 @@ namespace Classes\Faturamento\ControleFaturamento;
 			$data->bindParam(':valorPago', $this->valorPago);
 			$data->bindParam(':valorGlosa', $this->valorGlosa);
 			$data->execute();
+
 			$lastId = $this->connection->conn->lastInsertId();
 
-			return intval($lastId);
+			if(!empty($this->idControle)){
+				return $this->idControle;
+			}else{
+				return intval($lastId);
+			}
+			
 		}
 
 		public function selectAllRevenue($page, $limit)
@@ -115,5 +145,21 @@ namespace Classes\Faturamento\ControleFaturamento;
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
 			return $result;
+		}
+
+		public function getRevenueById($idRevenue)
+		{
+			$sql = "SELECT * FROM controle_faturamento.tb_controle WHERE ID_CONTROLE = ?";
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(1, $idRevenue, PDO::PARAM_INT);
+			$data->execute();
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+			return $result;
+		}
+
+		public function updateRevenue($arrayRevenue)
+		{
+
 		}
 	}

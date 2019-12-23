@@ -44,11 +44,8 @@
 		if (count($validate) != 0) {
 			header("Location: ../alerts/validateRevenue.html");
 			exit();
-		}else{
-			echo "Fatura nova !";
-			exit();
 		}
-
+		
 		$insertedRevenue = $revenue->saveRevenue($arrayRevenues);
 
 		// valida atrvés do ultimo ID se os dados foram inseridos corretamente.
