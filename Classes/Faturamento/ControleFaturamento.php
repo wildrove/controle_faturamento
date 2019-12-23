@@ -55,23 +55,22 @@ namespace Classes\Faturamento\ControleFaturamento;
 
 
 			$sqlEdit = "UPDATE controle_faturamento.tb_controle
-					SET CONVENIO = ?,
-						NUM_FATURA = ?,
-						NUM_FATURAMENTO = ?,
-						DT_FECHAMENTO = ?,
-						VALOR = ?,
-						DT_POSSIVEL_PAGAMENTO = ?,
-						DT_PAGAMENTO = ?,
-						PAGO = ?,
-						CONCILIADO = ?,
-						VL_PAGO = ?,
-						VL_GLOSA = ?
+					SET CONVENIO = :convenio,
+						NUM_FATURA = :nFatura,
+						NUM_FATURAMENTO = :nFaturamento,
+						DT_FECHAMENTO = :dtFechamento,
+						VALOR = :valor,
+						DT_POSSIVEL_PAGAMENTO = :dtPossivelPagamento,
+						DT_PAGAMENTO = :dtPagamento,
+						PAGO = :pago,
+						CONCILIADO = :conciliado,
+						VL_PAGO = :valorPago,
+						VL_GLOSA = :valorGlosa
 					WHERE ID_CONTROLE = $this->idControle";
 
 			$sqlInsert = "INSERT INTO controle_faturamento.tb_controle VALUES(NULL, :convenio, :nFatura, :nFaturamento , :dtFechamento, :valor, :dtPossivelPagamento, :dtPagamento, :pago, :conciliado, :valorPago, :valorGlosa)";
 
-			$data = null;
-
+			$data = "";
 			if($this->idControle > 0 ){
 				$data = $this->connection->conn->prepare($sqlEdit);
 			}else{
