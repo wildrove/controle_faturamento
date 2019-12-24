@@ -62,6 +62,7 @@
 			    			<div class="form-group">
 			    				<button type="submit" class="btn btn-primary border rounded-left-0">Pesquisar</button>
 			    				<a href="exportXls.php" class="btn btn-primary" id="" name="export">Exportar</a>
+			    				<a class="btn btn-primary " href="../index.php">Novo</a>
 			    			</div>
 			    		</form>
 			    	</div>

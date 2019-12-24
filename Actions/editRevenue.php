@@ -85,14 +85,16 @@
 				  	<div class="form-group col mt-4">
 				    	<label for="">Pago:</label>
 				    	<select name="pago">
-				    		<option class="form-control" value="SIM" selected="">SIM</option>
+				    		<option class="form-control" value=""></option>
+				    		<option class="form-control" value="SIM">SIM</option>
 				    		<option class="form-control" value="NÃO">NÃO</option>
 				    	</select>
 				  	</div>
 				  	<div class="form-group col mt-4">
 				    	<label for="">Conciliado:</label>
 				    	<select name="conciliado">
-				    		<option class="form-control" value="SIM" selected="">SIM</option>
+				    		<option class="form-control" value=""></option>
+				    		<option class="form-control" value="SIM">SIM</option>
 				    		<option class="form-control" value="NÃO">NÃO</option>
 				    	</select>
 				  	</div>
