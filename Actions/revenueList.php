@@ -57,7 +57,7 @@
 			    	<div class="d-flex justify-content-end">
 			    		<form method="get" action="">
 			    			<div class="form-group">
-			    				<input type="text" class="form-control border rounded-right-0" name="userSearch" placeholder="nome de usuário" required="" maxlength="30" autocomplete="off">
+			    				<input type="text" class="form-control border rounded-right-0" name="userSearch" placeholder="nome do convenio" required="" maxlength="30" autocomplete="off">
 			    			</div>
 			    			<div class="form-group">
 			    				<button type="submit" class="btn btn-primary border rounded-left-0">Pesquisar</button>
