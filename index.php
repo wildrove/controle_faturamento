@@ -19,7 +19,7 @@
 			</div>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
-					<a class="nav-link text-light" href="Actions/revenueList.php">Visualizar Faturamento</a>
+					<a class="nav-link text-light" href="Actions/revenueList.php">Visualizar Faturas</a>
 				</li>
 			</ul>
 		</nav>
