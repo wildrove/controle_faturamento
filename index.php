@@ -8,6 +8,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/css/style.css">
+    <link rel="shortcut icon" href="img/hmslicon.ico" />
+
 
     <title>Controle de Faturamento</title>
   </head>
@@ -95,23 +97,26 @@
 	   			</div><!-- Fim linha 02 -->
 
 	   			<div class="row"><!-- Inicio linha 03 -->
-	   				<div class="col-3"><!-- Coluna 10 -->
+	   				<div class="col"><!-- Coluna 10 -->
 	   					<div class="form-group">
 	   						<label class="font-weight-bold" for="convenio">Valor Pago R$:</label>
 	   						<input class="form-control" type="text" name="valorPago" autocomplete="off">
 	   					</div>
 	   				</div><!-- Fim coluna 10 -->
-	   				<div class="col-3"><!-- Coluna 11 -->
+	   				<div class="col"><!-- Coluna 11 -->
 	   					<div class="form-group">
 	   						<label class="font-weight-bold" for="convenio">Valor de Glosa R$:</label>
 	   						<input class="form-control" type="text" name="valorGlosa" autocomplete="off">
 	   					</div>
 	   				</div><!-- Fim coluna 11 -->
-	   				<div class="col-3"><!-- Coluna 12 -->
+	   				<div class="col"><!-- Coluna 12 -->
 	   					<div class="form-group">
-	   						<input class="btn btn-primary form-control" type="submit" value="Cadastrar" style="margin-top: 33px">
+	   						<input class="btn btn-primary form-control" type="submit" value="Cadastrar" style="margin-top: 30px">
 	   					</div>
 	   				</div><!-- Fim coluna 12 -->
+	   				<div class="form-group">
+	   					<input class="btn btn-primary form-control" type="" onclick="location.reload()" value="Cancelar" style="margin-top: 30px">
+	   				</div><!-- Fim coluna 13 -->
 	   			</div><!-- Fim linha 03 -->
 	   		</form>	
 		</section>	

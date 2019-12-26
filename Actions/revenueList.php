@@ -57,7 +57,19 @@
 			    	<div class="d-flex justify-content-end">
 			    		<form method="get" action="">
 			    			<div class="form-group">
-			    				<input type="text" class="form-control border rounded-right-0" name="userSearch" placeholder="nome do convenio" required="" maxlength="30" autocomplete="off">
+			    				<input type="text" class="form-control" name="convenioFiltro" placeholder="nome do convenio" maxlength="30" autocomplete="off">
+			    			</div>
+			    			<div class="form-group ml-2">
+			    				<input type="text" class="form-control" name="pagoFiltro" autocomplete="off" placeholder="pago?">
+			    			</div>
+			    			<div class="form-group ml-2">
+			    				<input type="text" class="form-control" name="conciliadoFiltro" autocomplete="off" placeholder="conciliado?">
+			    			</div>
+			    			<div class="form-group ml-2">
+			    				<input type="text" class="form-control" name="valorPagoFltro" autocomplete="off" placeholder="valor pago">
+			    			</div>
+			    			<div class="form-group ml-2">
+			    				<input type="text" class="form-control" name="nFaturaFiltro" autocomplete="off" placeholder="nº fatura">
 			    			</div>
 			    			<div class="form-group">
 			    				<button type="submit" class="btn btn-primary border rounded-left-0">Pesquisar</button>
@@ -104,7 +116,7 @@
 			              <td class="border-right"><?php if($value['CONCILIADO'] == ""){echo "Não informado";} echo $value['CONCILIADO']; ?></td>
 			              <td class="border-right"><?php echo "R$ " . str_replace(".", ",", strval($value['VL_PAGO'])); ?></td>
 			              <td class="border-right"><?php echo "R$ " . str_replace(".", ", " ,strval($value['VL_GLOSA'])); ?></td>
-			              <td class="border-right"><a class="btn btn-primary" href="editRevenue.php?idRevenue=<?php echo $value['ID_CONTROLE']; ?>">Editar</a></td>
+			              <td class="border-right"><a class="btn btn-warning" href="editRevenue.php?idRevenue=<?php echo $value['ID_CONTROLE']; ?>">Editar</a></td>
 			            </tr>
 			            <?php
 			        	}?>
