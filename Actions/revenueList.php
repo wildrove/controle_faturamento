@@ -52,24 +52,45 @@
 				</ul>
 			</nav>
 			<div class="container-fluid">
-            <h1 class="text-center mb-3" style="margin-top: 140px">Controle Faturamento</h1>    
-            <div>
+            <h1 class="text-center mb-3" style="margin-top: 140px;">Controle Faturamento</h1>    
+            <div class="mt-5">
 			    <table class="table shadow-lg table-hover table-striped table-bordered">
-			    	<div class="d-flex justify-content-end" style="border: 1px solid red;">
-			    		<form method="get" action="" style="border: 1px solid blue;">
-			    			<div class="form-group">
-			    				<input type="text" class="form-control" name="convenioFiltro" placeholder="nome do convenio" maxlength="30" autocomplete="off">
+			    	<div class="d-flex justify-content-end">
+			    		<form method="get" action="">
+			    			<div class="form-group" style="width: 120px;margin-top: -32px;">
+			    				<label>Convenio:</label>
+			    				<input type="text" class="form-control" name="convenioFiltro" placeholder="convenio" maxlength="30" autocomplete="off">
 			    			</div>
-			    			<div class="form-group ml-2">
-			    				<input type="text" class="form-control" name="pagoFiltro" autocomplete="off" placeholder="pago?">
+			    			<div class="form-group ml-2" style="width: 120px;margin-top: -32px;">
+			    				<label>Pago:</label>
+			    				<select class="form-control" name="pagoFiltro">
+			    					<option value="" selected=""></option>
+			    					<option value="SIM">SIM</option>
+			    					<option value="NÃO">NÃO</option>
+			    				</select>	
 			    			</div>
-			    			<div class="form-group ml-2">
-			    				<input type="text" class="form-control" name="conciliadoFiltro" autocomplete="off" placeholder="conciliado?">
+			    			<div class="form-group ml-2" style="width: 120px;margin-top: -32px;">
+			    				<label>Conciliado:</label>
+			    				<select class="form-control" name="conciliadoFiltro">
+			    					<option value="" selected=""></option>
+			    					<option value="SIM">SIM</option>
+			    					<option value="NÃO">NÃO</option>
+			    				</select>	
 			    			</div>
-			    			<div class="form-group ml-2">
+			    			<div class="form-group ml-2" style="width: 120px;margin-top: -32px;">
+			    				<label>VL Pago:</label>
 			    				<input type="text" class="form-control" name="valorPagoFltro" autocomplete="off" placeholder="valor pago">
 			    			</div>
-			    			<div class="form-group ml-2">
+			    			<div class="form-group ml-2" style="margin-top: -32px">
+			    				<label>Data fechamento:</label>
+			    				<input type="date" class="form-control" name="dtFechaFiltro" autocomplete="off" placeholder="Data fechamento" style="width: 180px">
+			    			</div>
+			    			<div class="form-group ml-2" style="margin-top: -32px;width: 180px">
+			    				<label>Data pagamento:</label>
+			    				<input type="date" class="form-control" name="dtPagaFiltro" autocomplete="off" placeholder="Data Pagamento">
+			    			</div>
+			    			<div class="form-group ml-2" style="width: 120px; margin-top: -32px">
+			    				<label>Nº fatura:</label>
 			    				<input type="text" class="form-control" name="nFaturaFiltro" autocomplete="off" placeholder="nº fatura">
 			    			</div>
 			    			<div class="form-group">
