@@ -34,6 +34,7 @@
 		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
 	    <!-- Link Personal style.css -->
 	    <link rel="stylesheet"  href="../bootstrap/css/style.css">
+	    <link rel="shortcut icon"  href="../img/hmslicon.ico">
 
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -54,8 +55,8 @@
             <h1 class="text-center mb-3" style="margin-top: 140px">Controle Faturamento</h1>    
             <div>
 			    <table class="table shadow-lg table-hover table-striped table-bordered">
-			    	<div class="d-flex justify-content-end">
-			    		<form method="get" action="">
+			    	<div class="d-flex justify-content-end" style="border: 1px solid red;">
+			    		<form method="get" action="" style="border: 1px solid blue;">
 			    			<div class="form-group">
 			    				<input type="text" class="form-control" name="convenioFiltro" placeholder="nome do convenio" maxlength="30" autocomplete="off">
 			    			</div>
