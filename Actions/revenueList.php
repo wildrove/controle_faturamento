@@ -1,4 +1,7 @@
 <?php
+	// Verifica se a global $_GET está setada para aplicar filtro.
+	$revenueFilter = isset($_POST) ? $_POST : "";
+	
 
    // pega a pagina atual
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
@@ -56,10 +59,50 @@
             <div class="mt-5">
 			    <table class="table shadow-lg table-hover table-striped table-bordered">
 			    	<div class="d-flex justify-content-end">
-			    		<form method="get" action="">
+			    		<form method="post" action="">
 			    			<div class="form-group" style="width: 120px;margin-top: -32px;">
 			    				<label>Convenio:</label>
-			    				<input type="text" class="form-control" name="convenioFiltro" placeholder="convenio" maxlength="30" autocomplete="off">
+			    				<select  class="form-control" name="convenioFiltro">
+			    					<option value=""></option>
+			    					<option value="Amil">AMIL</option>
+			    					<option value="Copasa">COPASA</option>
+			    					<option value="Bradesco">BRADESCO</option>
+			    					<option value="Blue Life">BLUE LIFE</option>
+			    					<option value="Cassi Banco do Brasil">CASSI BANCO DO BRASIL</option>
+			    					<option value="Correios">CORREIOS</option>
+			    					<option value="Gama Saude">GAMA SAÚDE</option>
+			    					<option value="Golden Cross">GOLDEN CROSS</option>
+			    					<option value="Nosamed">NOSAMED</option>
+			    					<option value="Good Life">GOOD LIFE</option>
+			    					<option value="Ipsemg">IPSEMG</option>
+			    					<option value="Life System">LIFE SYSTEM</option>
+			    					<option value="Porto Seguro">PORTO SEGURO</option>
+			    					<option value="Promed">PROMED</option>
+			    					<option value="Servidores Militares">SERVIDORES MILITARES</option>
+			    					<option value="Complementar Exames Ocupacional">COMPLEMENTAR EXAMES OCUPACIONAL</option>
+			    					<option value="Santa Casa">SANTA CASA</option>
+			    					<option value="Serpram">SERPRAM</option>
+			    					<option value="Unimed Sul Mineira">UNIMED SUL MINEIRA</option>
+			    					<option value="Vitallis Saude">VITALLIS SAÚDE</option>
+			    					<option value="SUS">SUS</option>
+			    					<option value="Particular">PARTICULAR</option>
+			    					<option value="Vital Medicina Ocupacional">VITAL MEDICINA OCUPACIONAL</option>
+			    					<option value="Extremamedic">EXTREMAMEDIC</option>
+			    					<option value="Notre Dame">NOTRE DAME</option>
+			    					<option value="Trab Medic">TRAB MEDIC</option>
+			    					<option value="Pandurata Alimentos">PANDURATA ALIMENTOS</option>
+			    					<option value="Munhoz">MUNHOZ</option>
+			    					<option value="Pref. Municipal de Extrema">PREF. MUNICIPAL DE EXTREMA</option>
+			    					<option value="Prefeitura(Credenciamento)">PREFEITURA(CREDENCIAMENTO)</option>
+			    					<option value="Vale Saude(SSBeneficios)">VALE SAÚDE(SSBENEFICIOS)</option>
+			    					<option value="Brumed">BRUMED</option>
+			    					<option value="Mtplus">MTPLUS</option>
+			    					<option value="Mediservice Adm">MEDISERVICE ADM</option>
+			    					<option value="Pref. Itapeva">PREF. ITAPEVA</option>
+			    					<option value="Unimed Intercambio">UNIMD INTERCAMBIO</option>
+			    					<option value="Ocupacional Sao Lucas">OCUPACIONAL SAO LUCAS</option>
+
+			    				</select>	
 			    			</div>
 			    			<div class="form-group ml-2" style="width: 120px;margin-top: -32px;">
 			    				<label>Pago:</label>
@@ -79,7 +122,7 @@
 			    			</div>
 			    			<div class="form-group ml-2" style="width: 120px;margin-top: -32px;">
 			    				<label>VL Pago:</label>
-			    				<input type="text" class="form-control" name="valorPagoFltro" autocomplete="off" placeholder="valor pago">
+			    				<input type="text" class="form-control" name="valorPagoFiltro" autocomplete="off" placeholder="valor pago">
 			    			</div>
 			    			<div class="form-group ml-2" style="margin-top: -32px">
 			    				<label>Data fechamento:</label>
@@ -189,3 +232,4 @@
 			</div>
 	</body>
 </html>
+

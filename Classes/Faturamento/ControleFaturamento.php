@@ -157,7 +157,7 @@ namespace Classes\Faturamento\ControleFaturamento;
 			return $result;
 		}
 
-		public function updateRevenue($arrayRevenue)
+		public function revenueFilter($arrayRevenue)
 		{
 
 		}
