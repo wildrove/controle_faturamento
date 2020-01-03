@@ -32,7 +32,58 @@
 	   				<div class="col"><!-- Coluna 01 -->
 	   					<div class="form-group">
 	   						<label class="font-weight-bold" for="convenio">Convênio:</label>
-	   						<input class="form-control" type="text" name="convenio" autocomplete="off" required="">
+	   						<select  class="form-control" name="convenio" required="">
+			    					<option value="" selected=""></option>
+			    					<option value="Amil">AMIL</option>
+			    					<option value="Copasa">COPASA</option>
+			    					<option value="Bradesco">BRADESCO</option>
+			    					<option value="Blue Life">BLUE LIFE</option>
+			    					<option value="Cassi Banco do Brasil">CASSI BANCO DO BRASIL</option>
+			    					<option value="Correios">CORREIOS</option>
+			    					<option value="Gama Saude">GAMA SAÚDE</option>
+			    					<option value="Golden Cross">GOLDEN CROSS</option>
+			    					<option value="Nosamed">NOSAMED</option>
+			    					<option value="Good Life">GOOD LIFE</option>
+			    					<option value="Ipsemg">IPSEMG</option>
+			    					<option value="Life System">LIFE SYSTEM</option>
+			    					<option value="Porto Seguro">PORTO SEGURO</option>
+			    					<option value="Promed">PROMED</option>
+			    					<option value="Servidores Militares">SERVIDORES MILITARES</option>
+			    					<option value="Complementar Exames Ocupacional">COMPLEMENTAR EXAMES OCUPACIONAL</option>
+			    					<option value="Santa Casa">SANTA CASA</option>
+			    					<option value="Serpram">SERPRAM</option>
+			    					<option value="Unimed Sul Mineira">UNIMED SUL MINEIRA</option>
+			    					<option value="Vitallis Saude">VITALLIS SAÚDE</option>
+			    					<option value="SUS">SUS</option>
+			    					<option value="Particular">PARTICULAR</option>
+			    					<option value="Vital Medicina Ocupacional">VITAL MEDICINA OCUPACIONAL</option>
+			    					<option value="Extremamedic">EXTREMAMEDIC</option>
+			    					<option value="Notre Dame">NOTRE DAME</option>
+			    					<option value="Trab Medic">TRAB MEDIC</option>
+			    					<option value="Pandurata Alimentos">PANDURATA ALIMENTOS</option>
+			    					<option value="Munhoz">MUNHOZ</option>
+			    					<option value="Pref. Municipal de Extrema">PREF. MUNICIPAL DE EXTREMA</option>
+			    					<option value="Prefeitura(Credenciamento)">PREFEITURA(CREDENCIAMENTO)</option>
+			    					<option value="Vale Saude(SSBeneficios)">VALE SAÚDE(SSBENEFICIOS)</option>
+			    					<option value="Brumed">BRUMED</option>
+			    					<option value="Mtplus">MTPLUS</option>
+			    					<option value="Mediservice Adm">MEDISERVICE ADM</option>
+			    					<option value="Pref. Itapeva">PREF. ITAPEVA</option>
+			    					<option value="Unimed Intercambio">UNIMD INTERCAMBIO</option>
+			    					<option value="Prefeitura de Toledo">PREFEITURA DE TOLEDO</option>
+			    					<option value="Vitalis Medisanitas Brasil">VITALIS MEDISANITAS BRASIL</option>
+			    					<option value="Sul America Serviços Saude">SUL AMERICA SERVIÇOS SAUDE</option>
+			    					<option value="Amha Saude S/A">AMHA SAUDE S/A</option>
+			    					<option value="Sta - Saude,Segurança e Meio">STA - SAUDE,SEGURANÇA E MEIO</option>
+			    					<option value="Samp Minas">SAMP MINAS</option>
+			    					<option value="Elolife">ELOLIFE</option>
+			    					<option value="Samp Minas">SAMP MINAS</option>
+			    					<option value="Unimed Estancias Paulistas">UNIMED ESTANCIAS PAULISTAS</option>
+			    					<option value="Notre Dame">NOTRE DAME</option>
+			    					<option value="Santa Casa Camanducaia">SANTA CASA CAMANDUCAIA</option>
+			    					<option value="Premium Saude">PREMIUM SAUDE</option>
+			    					<option value="Plansaude">PLANSAUDE</option>
+			    				</select>	
 	   					</div>
 	   				</div><!-- Fim coluna 01 -->
 	   				<div class="col"><!-- Coluna 02 -->

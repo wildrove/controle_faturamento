@@ -157,8 +157,89 @@ namespace Classes\Faturamento\ControleFaturamento;
 			return $result;
 		}
 
-		public function revenueFilter($arrayRevenue)
+		public function revenueFilter($arrayRevenue, $page, $limit)
 		{
+			foreach($arrayRevenue as $value) {
+				$this->convenio = strlen($arrayRevenue['convenioFiltro']) > 0 ? $arrayRevenue['convenioFiltro'] : "";
+				$this->pago = strlen($arrayRevenue['pagoFiltro']) > 0 ? strtoupper($arrayRevenue['pagoFiltro']) : "";
+				$this->conciliado = strlen($arrayRevenue['conciliadoFiltro']) > 0 ? strtoupper($arrayRevenue['conciliadoFiltro']) : "";
+				$this->valorPago = strlen($arrayRevenue['valorPagoFiltro']) > 0 ? floatVal(str_replace(",","." , str_replace(".", "", $arrayRevenue['valorPagoFiltro']))) : "";
+				$this->dtFechamento = strlen($arrayRevenue['dtFechaFiltro']) > 0 ? $arrayRevenue['dtFechaFiltro'] : "";
+				$this->dtPagamento = strlen($arrayRevenue['dtPagaFiltro']) > 0 ? $arrayRevenue['dtPagaFiltro'] : "";
+				$this->nFatura = strlen($arrayRevenue['nFaturaFiltro']) > 0 ? intval($arrayRevenue['nFaturaFiltro']) : "";
+			}
+
+			$sql;
+			$data;
+
+			if (!empty($this->convenio)) {
+				$sql = "SELECT * FROM controle_faturamento.tb_controle WHERE CONVENIO = ? LIMIT $page, $limit";
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->convenio);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+				return $result;
+
+			}elseif(!empty($this->pago)){
+				$sql = "SELECT * FROM controle_faturamento.tb_controle WHERE PAGO = ? LIMIT $page, $limit";
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->pago);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+				return $result;
+
+			}elseif(!empty($this->conciliado)){
+				$sql = "SELECT * FROM controle_faturamento.tb_controle WHERE CONCILIADO = ? LIMIT $page, $limit";
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->conciliado);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+				return $result;
+
+			}elseif(!empty($this->valorPago)){
+				$sql = "SELECT * FROM controle_faturamento.tb_controle WHERE VL_PAGO = ? LIMIT $page, $limit";
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->valorPago);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+				return $result;
+
+			}elseif(!empty($this->dtFechamento)){
+				$sql = "SELECT * FROM controle_faturamento.tb_controle WHERE DT_FECHAMENTO = ? LIMIT $page, $limit";
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->dtFechamento);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+				return $result;
+
+			}elseif(!empty($this->dtPagamento)){
+				$sql = "SELECT * FROM controle_faturamento.tb_controle WHERE DT_PAGAMENTO = ? LIMIT $page, $limit";
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->dtPagamento);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+				return $result;
+
+			}elseif(!empty($this->nFatura)){
+				$sql = "SELECT * FROM controle_faturamento.tb_controle WHERE NUM_FATURA = ? LIMIT $page, $limit";
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->nFatura);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+				return $result;
+			}
+
+			
+			//$data = $this->connection->conn->prepare($sql);
+			//$data->bindParam(1, $this->convenio);
+			//$data->bindParam(2, $this->pago);
+			/*$data->bindParam(':conciliado', $this->conciliado);
+			$data->bindParam(':vlPago', $this->valorPago);
+			$data->bindParam(':dtFechamento', $dtFechamento);
+			$data->bindParam(':dtPagamento', $this->dtPagamento);
+			$data->bindParam(':numFatura', $this->nFatura); */
+			//$data->execute();
+			//$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
 		}
 	}

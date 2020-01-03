@@ -1,8 +1,7 @@
 <?php
-	// Verifica se a global $_GET está setada para aplicar filtro.
-	$revenueFilter = isset($_POST) ? $_POST : "";
+	// Verifica se a global $_POST está setada para aplicar filtro.
+	$revenueFilter = (isset($_GET) ? $_GET : null);
 	
-
    // pega a pagina atual
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 	//itens por página
@@ -14,9 +13,21 @@
 	use Classes\Faturamento\ControleFaturamento\ControleFaturamento;
 
 	$listRevenue = new ControleFaturamento();
-   
-   	// função de consulta no banco
-	$resultPage = $listRevenue->selectAllRevenue($start, $itemsPerPage);
+
+	$resultPage;
+
+   	if (!empty($revenueFilter)) {
+   		$resultPage = $listRevenue->revenueFilter($revenueFilter, $start, $itemsPerPage);
+   	}else{
+   		// função de consulta no banco
+		$resultPage = $listRevenue->selectAllRevenue($start, $itemsPerPage);
+   	}
+
+   	if ($resultPage == null) {
+   		$resultPage = $listRevenue->selectAllRevenue($start, $itemsPerPage);
+   	}
+
+   	
 
    	// função que pega o total de linhas no banco   
 	$totalRowsQuery = $listRevenue->getTotalRevenues();
@@ -59,7 +70,7 @@
             <div class="mt-5">
 			    <table class="table shadow-lg table-hover table-striped table-bordered">
 			    	<div class="d-flex justify-content-end">
-			    		<form method="post" action="">
+			    		<form method="get" action="revenueList.php">
 			    			<div class="form-group" style="width: 120px;margin-top: -32px;">
 			    				<label>Convenio:</label>
 			    				<select  class="form-control" name="convenioFiltro">
@@ -100,8 +111,19 @@
 			    					<option value="Mediservice Adm">MEDISERVICE ADM</option>
 			    					<option value="Pref. Itapeva">PREF. ITAPEVA</option>
 			    					<option value="Unimed Intercambio">UNIMD INTERCAMBIO</option>
-			    					<option value="Ocupacional Sao Lucas">OCUPACIONAL SAO LUCAS</option>
-
+			    					<option value="Prefeitura de Toledo">PREFEITURA DE TOLEDO</option>
+			    					<option value="Vitalis Medisanitas Brasil">VITALIS MEDISANITAS BRASIL</option>
+			    					<option value="Sul America Serviços Saude">SUL AMERICA SERVIÇOS SAUDE</option>
+			    					<option value="Amha Saude S/A">AMHA SAUDE S/A</option>
+			    					<option value="Sta - Saude,Segurança e Meio">STA - SAUDE,SEGURANÇA E MEIO</option>
+			    					<option value="Samp Minas">SAMP MINAS</option>
+			    					<option value="Elolife">ELOLIFE</option>
+			    					<option value="Samp Minas">SAMP MINAS</option>
+			    					<option value="Unimed Estancias Paulistas">UNIMED ESTANCIAS PAULISTAS</option>
+			    					<option value="Notre Dame">NOTRE DAME</option>
+			    					<option value="Santa Casa Camanducaia">SANTA CASA CAMANDUCAIA</option>
+			    					<option value="Premium Saude">PREMIUM SAUDE</option>
+			    					<option value="Plansaude">PLANSAUDE</option>
 			    				</select>	
 			    			</div>
 			    			<div class="form-group ml-2" style="width: 120px;margin-top: -32px;">
@@ -162,6 +184,7 @@
 			        </thead>
 			        <tbody>
 			        <?php 
+
 			        foreach($resultPage as $value) {
 			        		
 			        		$dtPag = $value['DT_PAGAMENTO'] == "0000-00-00" ? "-" : date("d-m-Y", strtotime($value['DT_PAGAMENTO']));
@@ -232,4 +255,7 @@
 			</div>
 	</body>
 </html>
+<?php
 
+echo "<pre>";
+var_dump($revenueFilter);
