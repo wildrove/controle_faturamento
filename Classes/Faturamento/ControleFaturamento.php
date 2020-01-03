@@ -44,13 +44,13 @@ namespace Classes\Faturamento\ControleFaturamento;
 				$this->nFatura = isset($revenue['nFatura']) ? intval($revenue['nFatura']) : 0;
 				$this->nFaturamento = isset($revenue['nFaturamento']) ? intval($revenue['nFaturamento']) : "-";
 				$this->dtFechamento = isset($revenue['dtFechamento']) ? $revenue['dtFechamento'] : "00-00-0000";
-				$this->valor = isset($revenue['valor']) ? floatval(str_replace(",",".", str_replace(".","",$revenue['valor']))) : 0;
+				$this->valor = isset($revenue['valor']) ? $revenue['valor'] : "";
 				$this->dtPossivelPagamento = isset($revenue['dtPossivelPagamento']) ? $revenue['dtPossivelPagamento'] : "00-00-0000";
 				$this->dtPagamento = isset($revenue['dtPagamento']) ? $revenue['dtPagamento'] : "00-00-0000";
 				$this->pago = isset($revenue['pago']) ? strtoupper($revenue['pago']) : "Não informado";
 				$this->conciliado = isset($revenue['conciliado']) ? strtoupper($revenue['conciliado']) : "Não informado";
-				$this->valorPago = isset($revenue['valorPago']) ? floatval(str_replace(",",".", str_replace(".","",$revenue['valorPago']))) : 0;
-				$this->valorGlosa = isset($revenue['valorGlosa']) ? floatval(str_replace(",",".", str_replace(".","",$revenue['valorGlosa']))) : 0;
+				$this->valorPago = isset($revenue['valorPago']) ? $revenue['valorPago'] : "";
+				$this->valorGlosa = isset($revenue['valorGlosa']) ? $revenue['valorGlosa'] : "";
 			}
 
 
@@ -164,7 +164,7 @@ namespace Classes\Faturamento\ControleFaturamento;
 				$this->convenio = array_key_exists("convenioFiltro", $arrayRevenue)  ? $arrayRevenue['convenioFiltro'] : "";
 				$this->pago = array_key_exists("pagoFiltro", $arrayRevenue) ? strtoupper($arrayRevenue['pagoFiltro']) : "";
 				$this->conciliado = array_key_exists("conciliadoFiltro", $arrayRevenue) ? strtoupper($arrayRevenue['conciliadoFiltro']) : "";
-				$this->valorPago = array_key_exists("valorPagoFiltro", $arrayRevenue) ? floatVal(str_replace(",","." , str_replace(".", "", $arrayRevenue['valorPagoFiltro']))) : "";
+				$this->valorPago = array_key_exists("valorPagoFiltro", $arrayRevenue) ? $arrayRevenue['valorPagoFiltro'] : "";
 				$this->dtFechamento = array_key_exists("dtFechaFiltro", $arrayRevenue)  ? $arrayRevenue['dtFechaFiltro'] : "";
 				$this->dtPagamento = array_key_exists("dtPagaFiltro", $arrayRevenue) ? $arrayRevenue['dtPagaFiltro'] : "";
 				$this->nFatura = array_key_exists("nFaturaFiltro", $arrayRevenue) ? intval($arrayRevenue['nFaturaFiltro']) : "";
@@ -198,6 +198,7 @@ namespace Classes\Faturamento\ControleFaturamento;
 				return $result;
 
 			}elseif(!empty($this->valorPago)){
+				//$this->valorPago = strval($this->valorPago);
 				$sql = "SELECT * FROM controle_faturamento.tb_controle WHERE VL_PAGO = ? LIMIT $page, $limit";
 				$data = $this->connection->conn->prepare($sql);
 				$data->bindParam(1, $this->valorPago);

@@ -1,15 +1,6 @@
 <?php
-	// Verifica se a global $_POST está setada para aplicar filtro.
-	$arraySub = ["convenioFiltro" => "",
-			   	"pagoFiltro" => "",
-			   	"conciliadoFiltro" => "",
-			   	"valorPagoFiltro" => "",
-			   	"dtFechaFiltro" => "",
-			   	"dtPagaFiltro" => "",
-			   	"nFaturaFiltro" => ""
-			   	 ];
-		   	 
-	$revenueFilter = (isset($_GET) ? $_GET : $arraySub);
+	// Verifica se a global $_POST está setada para aplicar filtro.		   	 
+	$revenueFilter = (isset($_GET) ? $_GET : "");
 	
    // pega a pagina atual
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
@@ -265,3 +256,5 @@
 	</body>
 </html>
 <?php
+echo "<pre>";
+var_dump($revenueFilter);

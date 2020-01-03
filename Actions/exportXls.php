@@ -38,7 +38,7 @@
         $dadosXls .= "         <td>".$res['DT_PAGAMENTO']."</td>";
         $dadosXls .= "         <td>".$res['PAGO']."</td>";
         $dadosXls .= "         <td>".$res['CONCILIADO']."</td>";
-        $dadosXls .= "         <td>".str_replace(".", ",", strval($res['PAGO']))."</td>";
+        $dadosXls .= "         <td>".str_replace(".", ",", strval($res['VL_PAGO']))."</td>";
         $dadosXls .= "         <td>".str_replace(".", ",", strval($res['VL_GLOSA']))."</td>";
         $dadosXls .= "      </tr>";
     }
