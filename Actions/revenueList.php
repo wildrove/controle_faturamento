@@ -1,6 +1,15 @@
 <?php
 	// Verifica se a global $_POST está setada para aplicar filtro.
-	$revenueFilter = (isset($_GET) ? $_GET : null);
+	$arraySub = ["convenioFiltro" => "",
+			   	"pagoFiltro" => "",
+			   	"conciliadoFiltro" => "",
+			   	"valorPagoFiltro" => "",
+			   	"dtFechaFiltro" => "",
+			   	"dtPagaFiltro" => "",
+			   	"nFaturaFiltro" => ""
+			   	 ];
+		   	 
+	$revenueFilter = (isset($_GET) ? $_GET : $arraySub);
 	
    // pega a pagina atual
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
@@ -14,12 +23,12 @@
 
 	$listRevenue = new ControleFaturamento();
 
-	$resultPage;
 
-   	if (!empty($revenueFilter)) {
+   	if (isset($revenueFilter)) {
+   		// função de consulta no banco, traz somente o filtro.
    		$resultPage = $listRevenue->revenueFilter($revenueFilter, $start, $itemsPerPage);
    	}else{
-   		// função de consulta no banco
+   		// função de consulta no banco, faz um select all
 		$resultPage = $listRevenue->selectAllRevenue($start, $itemsPerPage);
    	}
 
@@ -27,7 +36,7 @@
    		$resultPage = $listRevenue->selectAllRevenue($start, $itemsPerPage);
    	}
 
-   	
+  
 
    	// função que pega o total de linhas no banco   
 	$totalRowsQuery = $listRevenue->getTotalRevenues();
@@ -256,6 +265,3 @@
 	</body>
 </html>
 <?php
-
-echo "<pre>";
-var_dump($revenueFilter);

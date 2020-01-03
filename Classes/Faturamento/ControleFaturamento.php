@@ -160,13 +160,14 @@ namespace Classes\Faturamento\ControleFaturamento;
 		public function revenueFilter($arrayRevenue, $page, $limit)
 		{
 			foreach($arrayRevenue as $value) {
-				$this->convenio = strlen($arrayRevenue['convenioFiltro']) > 0 ? $arrayRevenue['convenioFiltro'] : "";
-				$this->pago = strlen($arrayRevenue['pagoFiltro']) > 0 ? strtoupper($arrayRevenue['pagoFiltro']) : "";
-				$this->conciliado = strlen($arrayRevenue['conciliadoFiltro']) > 0 ? strtoupper($arrayRevenue['conciliadoFiltro']) : "";
-				$this->valorPago = strlen($arrayRevenue['valorPagoFiltro']) > 0 ? floatVal(str_replace(",","." , str_replace(".", "", $arrayRevenue['valorPagoFiltro']))) : "";
-				$this->dtFechamento = strlen($arrayRevenue['dtFechaFiltro']) > 0 ? $arrayRevenue['dtFechaFiltro'] : "";
-				$this->dtPagamento = strlen($arrayRevenue['dtPagaFiltro']) > 0 ? $arrayRevenue['dtPagaFiltro'] : "";
-				$this->nFatura = strlen($arrayRevenue['nFaturaFiltro']) > 0 ? intval($arrayRevenue['nFaturaFiltro']) : "";
+				
+				$this->convenio = array_key_exists("convenioFiltro", $arrayRevenue)  ? $arrayRevenue['convenioFiltro'] : "";
+				$this->pago = array_key_exists("pagoFiltro", $arrayRevenue) ? strtoupper($arrayRevenue['pagoFiltro']) : "";
+				$this->conciliado = array_key_exists("conciliadoFiltro", $arrayRevenue) ? strtoupper($arrayRevenue['conciliadoFiltro']) : "";
+				$this->valorPago = array_key_exists("valorPagoFiltro", $arrayRevenue) ? floatVal(str_replace(",","." , str_replace(".", "", $arrayRevenue['valorPagoFiltro']))) : "";
+				$this->dtFechamento = array_key_exists("dtFechaFiltro", $arrayRevenue)  ? $arrayRevenue['dtFechaFiltro'] : "";
+				$this->dtPagamento = array_key_exists("dtPagaFiltro", $arrayRevenue) ? $arrayRevenue['dtPagaFiltro'] : "";
+				$this->nFatura = array_key_exists("nFaturaFiltro", $arrayRevenue) ? intval($arrayRevenue['nFaturaFiltro']) : "";
 			}
 
 			$sql;
@@ -228,18 +229,5 @@ namespace Classes\Faturamento\ControleFaturamento;
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
 				return $result;
 			}
-
-			
-			//$data = $this->connection->conn->prepare($sql);
-			//$data->bindParam(1, $this->convenio);
-			//$data->bindParam(2, $this->pago);
-			/*$data->bindParam(':conciliado', $this->conciliado);
-			$data->bindParam(':vlPago', $this->valorPago);
-			$data->bindParam(':dtFechamento', $dtFechamento);
-			$data->bindParam(':dtPagamento', $this->dtPagamento);
-			$data->bindParam(':numFatura', $this->nFatura); */
-			//$data->execute();
-			//$result = $data->fetchAll(PDO::FETCH_ASSOC);
-
 		}
 	}
