@@ -37,8 +37,9 @@
 			    					<option value="Amil">AMIL</option>
 			    					<option value="Copasa">COPASA</option>
 			    					<option value="Bradesco">BRADESCO</option>
+			    					<option value="Bauducco">BAUDUCCO</option>
 			    					<option value="Blue Life">BLUE LIFE</option>
-			    					<option value="Cassi Banco do Brasil">CASSI BANCO DO BRASIL</option>
+			    					<option value="Cassi">CASSI</option>
 			    					<option value="Correios">CORREIOS</option>
 			    					<option value="Gama Saude">GAMA SAÚDE</option>
 			    					<option value="Golden Cross">GOLDEN CROSS</option>
@@ -50,7 +51,7 @@
 			    					<option value="Promed">PROMED</option>
 			    					<option value="Servidores Militares">SERVIDORES MILITARES</option>
 			    					<option value="Complementar Exames Ocupacional">COMPLEMENTAR EXAMES OCUPACIONAL</option>
-			    					<option value="Santa Casa">SANTA CASA</option>
+			    					<option value="Santa Casa Bragança">SANTA CASA BRAGANÇA</option>
 			    					<option value="Serpram">SERPRAM</option>
 			    					<option value="Unimed Sul Mineira">UNIMED SUL MINEIRA</option>
 			    					<option value="Vitallis Saude">VITALLIS SAÚDE</option>
@@ -58,6 +59,7 @@
 			    					<option value="Particular">PARTICULAR</option>
 			    					<option value="Vital Medicina Ocupacional">VITAL MEDICINA OCUPACIONAL</option>
 			    					<option value="Extremamedic">EXTREMAMEDIC</option>
+			    					<option value="Ação Med">AÇÃO MED</option>
 			    					<option value="Notre Dame">NOTRE DAME</option>
 			    					<option value="Trab Medic">TRAB MEDIC</option>
 			    					<option value="Pandurata Alimentos">PANDURATA ALIMENTOS</option>
@@ -77,12 +79,13 @@
 			    					<option value="Sta - Saude,Segurança e Meio">STA - SAUDE,SEGURANÇA E MEIO</option>
 			    					<option value="Samp Minas">SAMP MINAS</option>
 			    					<option value="Elolife">ELOLIFE</option>
-			    					<option value="Samp Minas">SAMP MINAS</option>
+			    					<option value="Faponline">FAPONLINE</option>
 			    					<option value="Unimed Estancias Paulistas">UNIMED ESTANCIAS PAULISTAS</option>
 			    					<option value="Notre Dame">NOTRE DAME</option>
 			    					<option value="Santa Casa Camanducaia">SANTA CASA CAMANDUCAIA</option>
 			    					<option value="Premium Saude">PREMIUM SAUDE</option>
 			    					<option value="Plansaude">PLANSAUDE</option>
+			    					<option value="Postal Saude">POSTAL SAUDE</option>
 			    				</select>	
 	   					</div>
 	   				</div><!-- Fim coluna 01 -->

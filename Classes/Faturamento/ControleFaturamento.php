@@ -42,7 +42,7 @@ namespace Classes\Faturamento\ControleFaturamento;
 				$this->idControle = array_key_exists("idControle", $revenue) ? intval($revenue['idControle']) : 0;
 				$this->convenio = isset($revenue['convenio']) ? mb_convert_case($revenue['convenio'], MB_CASE_TITLE, 'UTF-8') : "Não informado";
 				$this->nFatura = isset($revenue['nFatura']) ? intval($revenue['nFatura']) : 0;
-				$this->nFaturamento = isset($revenue['nFaturamento']) ? intval($revenue['nFaturamento']) : "-";
+				$this->nFaturamento = isset($revenue['nFaturamento']) ? $revenue['nFaturamento'] : "-";
 				$this->dtFechamento = isset($revenue['dtFechamento']) ? $revenue['dtFechamento'] : "00-00-0000";
 				$this->valor = isset($revenue['valor']) ? $revenue['valor'] : "";
 				$this->dtPossivelPagamento = isset($revenue['dtPossivelPagamento']) ? $revenue['dtPossivelPagamento'] : "00-00-0000";
@@ -79,7 +79,7 @@ namespace Classes\Faturamento\ControleFaturamento;
 
 			$data->bindParam(':convenio', $this->convenio, PDO::PARAM_STR);
 			$data->bindParam(':nFatura', $this->nFatura, PDO::PARAM_INT);
-			$data->bindParam(':nFaturamento', $this->nFaturamento, PDO::PARAM_INT);
+			$data->bindParam(':nFaturamento', $this->nFaturamento, PDO::PARAM_STR);
 			$data->bindParam(':dtFechamento', $this->dtFechamento, PDO::PARAM_STR);
 			$data->bindParam(':valor', $this->valor);
 			$data->bindParam(':dtPossivelPagamento', $this->dtPossivelPagamento, PDO::PARAM_STR);

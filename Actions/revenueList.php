@@ -26,7 +26,6 @@
    	if ($resultPage == null) {
    		$resultPage = $listRevenue->selectAllRevenue($start, $itemsPerPage);
    	}
-
   
 
    	// função que pega o total de linhas no banco   
@@ -255,6 +254,3 @@
 			</div>
 	</body>
 </html>
-<?php
-echo "<pre>";
-var_dump($revenueFilter);
