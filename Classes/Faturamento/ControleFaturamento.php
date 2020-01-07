@@ -125,6 +125,80 @@ namespace Classes\Faturamento\ControleFaturamento;
 			return $result = count($result);
 		}
 
+		public function getTotalRevenueFilter($arrayRevenue)
+		{
+			foreach($arrayRevenue as $value) {
+				
+				$this->convenio = array_key_exists("convenioFiltro", $arrayRevenue)  ? $arrayRevenue['convenioFiltro'] : "";
+				$this->pago = array_key_exists("pagoFiltro", $arrayRevenue) ? strtoupper($arrayRevenue['pagoFiltro']) : "";
+				$this->conciliado = array_key_exists("conciliadoFiltro", $arrayRevenue) ? strtoupper($arrayRevenue['conciliadoFiltro']) : "";
+				$this->valorPago = array_key_exists("valorPagoFiltro", $arrayRevenue) ? $arrayRevenue['valorPagoFiltro'] : "";
+				$this->dtFechamento = array_key_exists("dtFechaFiltro", $arrayRevenue)  ? $arrayRevenue['dtFechaFiltro'] : "";
+				$this->dtPagamento = array_key_exists("dtPagaFiltro", $arrayRevenue) ? $arrayRevenue['dtPagaFiltro'] : "";
+				$this->nFatura = array_key_exists("nFaturaFiltro", $arrayRevenue) ? intval($arrayRevenue['nFaturaFiltro']) : "";
+			}
+
+			$sql;
+			$data;
+
+			if (!empty($this->convenio)) {
+				$sql = "SELECT * FROM controle_faturamento.tb_controle WHERE CONVENIO = ?";
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->convenio);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+				return count($result);
+
+			}elseif(!empty($this->pago)){
+				$sql = "SELECT * FROM controle_faturamento.tb_controle WHERE PAGO = ?";
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->pago);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+				return count($result);
+
+			}elseif(!empty($this->conciliado)){
+				$sql = "SELECT * FROM controle_faturamento.tb_controle WHERE CONCILIADO = ?";
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->conciliado);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+				return count($result);
+
+			}elseif(!empty($this->valorPago)){
+				$sql = "SELECT * FROM controle_faturamento.tb_controle WHERE VL_PAGO = ? ";
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->valorPago);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+				return conut($result);
+
+			}elseif(!empty($this->dtFechamento)){
+				$sql = "SELECT * FROM controle_faturamento.tb_controle WHERE DT_FECHAMENTO = ?";
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->dtFechamento);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+				return count($result);
+
+			}elseif(!empty($this->dtPagamento)){
+				$sql = "SELECT * FROM controle_faturamento.tb_controle WHERE DT_PAGAMENTO = ?";
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->dtPagamento);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+				return count($result);
+
+			}elseif(!empty($this->nFatura)){
+				$sql = "SELECT * FROM controle_faturamento.tb_controle WHERE NUM_FATURA = ?";
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->nFatura);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+				return count($result);
+			}
+		}
+
 		public function exportXls()
 		{
 			$sql = "SELECT  * FROM controle_faturamento.tb_controle ORDER BY ID_CONTROLE ASC";

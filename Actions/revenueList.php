@@ -4,35 +4,59 @@
 	
    // pega a pagina atual
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
-	//itens por página
-	$itemsPerPage = 10;
-   	// calcula o inicio da consulta
-	$start = ($currentPage * $itemsPerPage) - $itemsPerPage;
+	
 	
 	require '../vendor/autoload.php';
 	use Classes\Faturamento\ControleFaturamento\ControleFaturamento;
 
 	$listRevenue = new ControleFaturamento();
 
+	
 
-   	if (isset($revenueFilter)) {
-   		// função de consulta no banco, traz somente o filtro.
-   		$resultPage = $listRevenue->revenueFilter($revenueFilter, $start, $itemsPerPage);
-   	}else{
+   	if (empty($revenueFilter)) {
+   		//itens por página
+		$itemsPerPage = 20;
+   		// calcula o inicio da consulta
+		$start = ($currentPage * $itemsPerPage) - $itemsPerPage;
    		// função de consulta no banco, faz um select all
 		$resultPage = $listRevenue->selectAllRevenue($start, $itemsPerPage);
+		// função que pega o total de linhas no banco   
+		$totalRowsQuery = $listRevenue->getTotalRevenues();
+		//calcula to total de paginas
+		$totalPages = ceil($totalRowsQuery/$itemsPerPage);
+   		
+   	}elseif(!empty($revenueFilter)){
+   		//itens por página
+		$itemsPerPage = 10;
+	   	// calcula o inicio da consulta
+		$start = ($currentPage * $itemsPerPage) - $itemsPerPage;
+   		// função de consulta no banco, traz somente o filtro.
+   		$resultPage = $listRevenue->revenueFilter($revenueFilter, $start, $itemsPerPage);
+   		// função que pega o total de linhas no banco   
+		$totalRowsQuery = $listRevenue->getTotalRevenueFilter($revenueFilter);
+		//calcula to total de paginas
+		$totalPages = ceil($totalRowsQuery/$itemsPerPage);
+
+		foreach ($revenueFilter as $value) {
+			$conv = array_key_exists("convenioFiltro", $revenueFilter) ? $revenueFilter['convenioFiltro']: "";
+			$pag = array_key_exists("pagoFiltro", $revenueFilter) ? $revenueFilter['pagoFiltro'] : "";
+			$conc = array_key_exists("conciliadoFiltro", $revenueFilter) ? $revenueFilter['conciliadoFiltro'] : "";
+			$vlPag = array_key_exists("valorPagoFiltro", $revenueFilter) ? $revenueFilter['valorPagoFiltro'] : "";
+			$dtFech = array_key_exists("dtFechaFiltro", $revenueFilter) ? $revenueFilter['dtFechaFiltro'] : "";
+			$dtPag = array_key_exists("dtPagaFiltro", $revenueFilter) ? $revenueFilter['dtPagaFiltro'] : "";
+			$nFat = array_key_exists("nFaturaFiltro", $revenueFilter) ? $revenueFilter['nFaturaFiltro'] : "";
+		}
    	}
 
    	if ($resultPage == null) {
+   		$itemsPerPage = 20;
    		$resultPage = $listRevenue->selectAllRevenue($start, $itemsPerPage);
+   		// função que pega o total de linhas no banco   
+		$totalRowsQuery = $listRevenue->getTotalRevenues();
+   		//calcula to total de paginas
+		$totalPages = ceil($totalRowsQuery/$itemsPerPage);
    	}
   
-
-   	// função que pega o total de linhas no banco   
-	$totalRowsQuery = $listRevenue->getTotalRevenues();
-   	//calcula to total de paginas
-	$totalPages = ceil($totalRowsQuery/$itemsPerPage);
-
 
 	$previousPage = $currentPage -1;
 	$nextPage = $currentPage + 1;
@@ -71,58 +95,61 @@
 			    	<div class="d-flex justify-content-end">
 			    		<form method="get" action="revenueList.php">
 			    			<div class="form-group" style="width: 120px;margin-top: -32px;">
+			    				<input type="hidden" name="page" value="<?php echo $currentPage; ?>">
 			    				<label>Convenio:</label>
 			    				<select  class="form-control" name="convenioFiltro">
-			    					<option value=""></option>
+			    					<option value="" selected=""></option>
 			    					<option value="Amil">AMIL</option>
-			    					<option value="Copasa">COPASA</option>
+			    					<option value="Amha Saude S/A">AMHA SAUDE S/A</option>
+			    					<option value="Ação Med">AÇÃO MED</option>
 			    					<option value="Bradesco">BRADESCO</option>
+			    					<option value="Bauducco">BAUDUCCO</option>
 			    					<option value="Blue Life">BLUE LIFE</option>
-			    					<option value="Cassi Banco do Brasil">CASSI BANCO DO BRASIL</option>
+			    					<option value="Brumed">BRUMED</option>
+			    					<option value="Cassi">CASSI</option>
+			    					<option value="Complementar Exames Ocupacional">COMPLEMENTAR EXAMES OCUPACIONAL</option>
+			    					<option value="Copasa">COPASA</option>
 			    					<option value="Correios">CORREIOS</option>
+			    					<option value="Elolife">ELOLIFE</option>
+			    					<option value="Extremamedic">EXTREMAMEDIC</option>
+			    					<option value="Faponline">FAPONLINE</option>
 			    					<option value="Gama Saude">GAMA SAÚDE</option>
 			    					<option value="Golden Cross">GOLDEN CROSS</option>
-			    					<option value="Nosamed">NOSAMED</option>
 			    					<option value="Good Life">GOOD LIFE</option>
 			    					<option value="Ipsemg">IPSEMG</option>
 			    					<option value="Life System">LIFE SYSTEM</option>
-			    					<option value="Porto Seguro">PORTO SEGURO</option>
-			    					<option value="Promed">PROMED</option>
-			    					<option value="Servidores Militares">SERVIDORES MILITARES</option>
-			    					<option value="Complementar Exames Ocupacional">COMPLEMENTAR EXAMES OCUPACIONAL</option>
-			    					<option value="Santa Casa">SANTA CASA</option>
-			    					<option value="Serpram">SERPRAM</option>
-			    					<option value="Unimed Sul Mineira">UNIMED SUL MINEIRA</option>
-			    					<option value="Vitallis Saude">VITALLIS SAÚDE</option>
-			    					<option value="SUS">SUS</option>
-			    					<option value="Particular">PARTICULAR</option>
-			    					<option value="Vital Medicina Ocupacional">VITAL MEDICINA OCUPACIONAL</option>
-			    					<option value="Extremamedic">EXTREMAMEDIC</option>
-			    					<option value="Notre Dame">NOTRE DAME</option>
-			    					<option value="Trab Medic">TRAB MEDIC</option>
-			    					<option value="Pandurata Alimentos">PANDURATA ALIMENTOS</option>
-			    					<option value="Munhoz">MUNHOZ</option>
-			    					<option value="Pref. Municipal de Extrema">PREF. MUNICIPAL DE EXTREMA</option>
-			    					<option value="Prefeitura(Credenciamento)">PREFEITURA(CREDENCIAMENTO)</option>
-			    					<option value="Vale Saude(SSBeneficios)">VALE SAÚDE(SSBENEFICIOS)</option>
-			    					<option value="Brumed">BRUMED</option>
-			    					<option value="Mtplus">MTPLUS</option>
 			    					<option value="Mediservice Adm">MEDISERVICE ADM</option>
-			    					<option value="Pref. Itapeva">PREF. ITAPEVA</option>
-			    					<option value="Unimed Intercambio">UNIMD INTERCAMBIO</option>
-			    					<option value="Prefeitura de Toledo">PREFEITURA DE TOLEDO</option>
-			    					<option value="Vitalis Medisanitas Brasil">VITALIS MEDISANITAS BRASIL</option>
-			    					<option value="Sul America Serviços Saude">SUL AMERICA SERVIÇOS SAUDE</option>
-			    					<option value="Amha Saude S/A">AMHA SAUDE S/A</option>
-			    					<option value="Sta - Saude,Segurança e Meio">STA - SAUDE,SEGURANÇA E MEIO</option>
-			    					<option value="Samp Minas">SAMP MINAS</option>
-			    					<option value="Elolife">ELOLIFE</option>
-			    					<option value="Samp Minas">SAMP MINAS</option>
-			    					<option value="Unimed Estancias Paulistas">UNIMED ESTANCIAS PAULISTAS</option>
+			    					<option value="Mtplus">MTPLUS</option>
+			    					<option value="Nosamed">NOSAMED</option>
 			    					<option value="Notre Dame">NOTRE DAME</option>
-			    					<option value="Santa Casa Camanducaia">SANTA CASA CAMANDUCAIA</option>
-			    					<option value="Premium Saude">PREMIUM SAUDE</option>
+			    					<option value="Pandurata Alimentos">PANDURATA ALIMENTOS</option>
+			    					<option value="Particular">PARTICULAR</option>
 			    					<option value="Plansaude">PLANSAUDE</option>
+			    					<option value="Prefeitura(Credenciamento)">PREFEITURA(CREDENCIAMENTO)</option>
+			    					<option value="Pref. Municipal de Extrema">PREF. MUNICIPAL DE EXTREMA</option>
+			    					<option value="Pref. Itapeva">PREF. ITAPEVA</option>
+			    					<option value="Pref. Munhoz">PREF. MUNHOZ</option>
+			    					<option value="Premium Saude">PREMIUM SAUDE</option>
+			    					<option value="Porto Seguro">PORTO SEGURO</option>
+			    					<option value="Postal Saude">POSTAL SAUDE</option>
+			    					<option value="Promed">PROMED</option>
+			    					<option value="Pref. de Toledo">PREF. DE TOLEDO</option>
+			    					<option value="Samp Minas">SAMP MINAS</option>
+			    					<option value="Santa Casa Bragança">SANTA CASA BRAGANÇA</option>
+			    					<option value="Santa Casa Camanducaia">SANTA CASA CAMANDUCAIA</option>
+			    					<option value="Serpram">SERPRAM</option>
+			    					<option value="Servidores Militares">SERVIDORES MILITARES</option>
+			    					<option value="Sta - Saude,Segurança e Meio">STA - SAUDE,SEGURANÇA E MEIO</option>
+			    					<option value="Sul America Serviços Saude">SUL AMERICA SERVIÇOS SAUDE</option>
+			    					<option value="SUS">SUS</option>
+			    					<option value="Trab Medic">TRAB MEDIC</option>
+			    					<option value="Unimed Estancias Paulistas">UNIMED ESTANCIAS PAULISTAS</option>
+			    					<option value="Unimed Intercambio">UNIMD INTERCAMBIO</option>
+			    					<option value="Unimed Sul Mineira">UNIMED SUL MINEIRA</option>
+			    					<option value="Vale Saude(SSBeneficios)">VALE SAÚDE(SSBENEFICIOS)</option>
+			    					<option value="Vital Medicina Ocupacional">VITAL MEDICINA OCUPACIONAL</option>
+			    					<option value="Vitalis Medisanitas Brasil">VITALIS MEDISANITAS BRASIL</option>
+			    					<option value="Vitallis Saude">VITALLIS SAÚDE</option>	
 			    				</select>	
 			    			</div>
 			    			<div class="form-group ml-2" style="width: 120px;margin-top: -32px;">
@@ -215,7 +242,7 @@
 					   <li class="page-item <?php if($previousPage == 0){ echo 'disabled';} ?>">
 					   <?php 
 					   if($previousPage != 0) { ?>
-					      <a href="revenueList.php?page=<?php echo $previousPage; ?>" style="text-decoration: none;">
+					      <a href="revenueList.php?page=<?php echo $previousPage; ?>&convenioFiltro=<?php echo $conv; ?>&pagoFiltro=<?php echo $pag; ?>&conciliadoFiltro=<?php echo $conc; ?>&valorPagoFiltro=<?php echo $vlPag; ?>&dtFechaFiltro=<?php echo $dtFech; ?>&dtPagaFiltro=<?php echo $dtPag; ?>&nFaturaFiltro=<?php echo $nFat; ?>" style="text-decoration: none;">
 					         <span class="page-link bg-primary text-light" aria-hidden="true">Anterior</span>
 					      </a>
 					   <?php } else { ?>
@@ -241,7 +268,9 @@
 					      <li class="page-item <?php if($nextPage > $totalPages){echo 'disabled';} ?>">
 					       <?php 
 					       if($nextPage <= $totalPages) { ?>
-					          <a href="revenueList.php?page=<?php echo $nextPage; ?>" aria-label="Previous" style="text-decoration: none">
+					          <a href="revenueList.php?page=<?php echo $nextPage; ?><?php if(!empty($revenueFilter)) : echo "&convenioFiltro=" . "$conv" . "&pagoFiltro=" . "$pag" . "&conciliadoFiltro=" . "$conc" . "&valorPagoFiltro=" . "$vlPag" . "&dtFechaFiltro=" . "$dtFech" . "&dtPagaFiltro=" . "$dtPag" . "&nFaturaFiltro=" . "$nFat" ?>
+					          	
+					          <?php endif ?>" aria-label="Previous" style="text-decoration: none">
 					             <span class="page-link bg-primary text-light" aria-hidden="true">Próximo</span>
 					          </a>
 					       <?php } else { ?>
@@ -254,3 +283,11 @@
 			</div>
 	</body>
 </html>
+
+<!--
+
+&convenioFiltro=<?php echo $conv; ?>&pagoFiltro=<?php echo $pag; ?>&conciliadoFiltro=<?php echo $conc; ?>&valorPagoFiltro=<?php echo $vlPag; ?>&dtFechaFiltro=<?php echo $dtFech; ?>&dtPagaFiltro=<?php echo $dtPag; ?>&nFaturaFiltro=<?php echo $nFat; ?>
+
+
+
+-->
