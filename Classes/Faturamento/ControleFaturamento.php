@@ -44,13 +44,13 @@ namespace Classes\Faturamento\ControleFaturamento;
 				$this->nFatura = isset($revenue['nFatura']) ? intval($revenue['nFatura']) : 0;
 				$this->nFaturamento = isset($revenue['nFaturamento']) ? $revenue['nFaturamento'] : "-";
 				$this->dtFechamento = isset($revenue['dtFechamento']) ? $revenue['dtFechamento'] : "00-00-0000";
-				$this->valor = isset($revenue['valor']) ? $revenue['valor'] : "";
+				$this->valor = !empty($revenue['valor']) ? $revenue['valor'] : "0";
 				$this->dtPossivelPagamento = isset($revenue['dtPossivelPagamento']) ? $revenue['dtPossivelPagamento'] : "00-00-0000";
 				$this->dtPagamento = isset($revenue['dtPagamento']) ? $revenue['dtPagamento'] : "00-00-0000";
-				$this->pago = isset($revenue['pago']) ? strtoupper($revenue['pago']) : "Não informado";
-				$this->conciliado = isset($revenue['conciliado']) ? strtoupper($revenue['conciliado']) : "Não informado";
-				$this->valorPago = isset($revenue['valorPago']) ? $revenue['valorPago'] : "";
-				$this->valorGlosa = isset($revenue['valorGlosa']) ? $revenue['valorGlosa'] : "";
+				$this->pago = !empty($revenue['pago']) ? strtoupper($revenue['pago']) : "-";
+				$this->conciliado = !empty($revenue['conciliado']) ? strtoupper($revenue['conciliado']) : "-";
+				$this->valorPago = !empty($revenue['valorPago']) ? $revenue['valorPago'] : "0";
+				$this->valorGlosa = !empty($revenue['valorGlosa']) ? $revenue['valorGlosa'] : "0";
 			}
 
 
@@ -81,13 +81,13 @@ namespace Classes\Faturamento\ControleFaturamento;
 			$data->bindParam(':nFatura', $this->nFatura, PDO::PARAM_INT);
 			$data->bindParam(':nFaturamento', $this->nFaturamento, PDO::PARAM_STR);
 			$data->bindParam(':dtFechamento', $this->dtFechamento, PDO::PARAM_STR);
-			$data->bindParam(':valor', $this->valor);
+			$data->bindParam(':valor', $this->valor, PDO::PARAM_STR);
 			$data->bindParam(':dtPossivelPagamento', $this->dtPossivelPagamento, PDO::PARAM_STR);
 			$data->bindParam(':dtPagamento', $this->dtPagamento, PDO::PARAM_STR);
 			$data->bindParam(':pago', $this->pago, PDO::PARAM_STR);
 			$data->bindParam(':conciliado', $this->conciliado, PDO::PARAM_STR);
-			$data->bindParam(':valorPago', $this->valorPago);
-			$data->bindParam(':valorGlosa', $this->valorGlosa);
+			$data->bindParam(':valorPago', $this->valorPago, PDO::PARAM_STR);
+			$data->bindParam(':valorGlosa', $this->valorGlosa, PDO::PARAM_STR);
 			$data->execute();
 
 			$lastId = $this->connection->conn->lastInsertId();
