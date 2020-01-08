@@ -94,7 +94,7 @@
 			    <table class="table shadow-lg table-hover table-striped table-bordered">
 			    	<div class="d-flex justify-content-end">
 			    		<form method="get" action="revenueList.php">
-			    			<div class="form-group" style="width: 120px;margin-top: -32px;">
+			    			<div class="form-group" style="width: 110px;margin-top: -32px;">
 			    				<input type="hidden" name="page" value="<?php echo $currentPage; ?>">
 			    				<label>Convenio:</label>
 			    				<select  class="form-control" name="convenioFiltro">
@@ -152,7 +152,7 @@
 			    					<option value="Vitallis Saude">VITALLIS SAÚDE</option>	
 			    				</select>	
 			    			</div>
-			    			<div class="form-group ml-2" style="width: 120px;margin-top: -32px;">
+			    			<div class="form-group ml-2" style="width: 110px;margin-top: -32px;">
 			    				<label>Pago:</label>
 			    				<select class="form-control" name="pagoFiltro">
 			    					<option value="" selected=""></option>
@@ -160,7 +160,7 @@
 			    					<option value="NÃO">NÃO</option>
 			    				</select>	
 			    			</div>
-			    			<div class="form-group ml-2" style="width: 120px;margin-top: -32px;">
+			    			<div class="form-group ml-2" style="width: 110px;margin-top: -32px;">
 			    				<label>Conciliado:</label>
 			    				<select class="form-control" name="conciliadoFiltro">
 			    					<option value="" selected=""></option>
@@ -168,7 +168,7 @@
 			    					<option value="NÃO">NÃO</option>
 			    				</select>	
 			    			</div>
-			    			<div class="form-group ml-2" style="width: 120px;margin-top: -32px;">
+			    			<div class="form-group ml-2" style="width: 110px;margin-top: -32px;">
 			    				<label>VL Pago:</label>
 			    				<input type="text" class="form-control" name="valorPagoFiltro" autocomplete="off" placeholder="valor pago">
 			    			</div>
@@ -180,7 +180,7 @@
 			    				<label>Data pagamento:</label>
 			    				<input type="date" class="form-control" name="dtPagaFiltro" autocomplete="off" placeholder="Data Pagamento">
 			    			</div>
-			    			<div class="form-group ml-2" style="width: 120px; margin-top: -32px">
+			    			<div class="form-group ml-2" style="width: 110px; margin-top: -32px">
 			    				<label>Nº fatura:</label>
 			    				<input type="text" class="form-control" name="nFaturaFiltro" autocomplete="off" placeholder="nº fatura">
 			    			</div>
@@ -188,6 +188,7 @@
 			    				<button type="submit" class="btn btn-primary border rounded-left-0">Pesquisar</button>
 			    				<a href="exportXls.php" class="btn btn-primary" id="" name="export">Exportar</a>
 			    				<a class="btn btn-primary " href="../index.php">Novo</a>
+			    				<a class="btn btn-primary " href="revenueList.php">Inicio</a>
 			    			</div>
 			    		</form>
 			    	</div>
