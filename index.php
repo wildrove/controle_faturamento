@@ -79,7 +79,7 @@
 			    					<option value="SUS">SUS</option>
 			    					<option value="Trab Medic">TRAB MEDIC</option>
 			    					<option value="Unimed Estancias Paulistas">UNIMED ESTANCIAS PAULISTAS</option>
-			    					<option value="Unimed Intercambio">UNIMD INTERCAMBIO</option>
+			    					<option value="Unimed Intercambio">UNIMED INTERCAMBIO</option>
 			    					<option value="Unimed Sul Mineira">UNIMED SUL MINEIRA</option>
 			    					<option value="Vale Saude(SSBeneficios)">VALE SAÚDE(SSBENEFICIOS)</option>
 			    					<option value="Vital Medicina Ocupacional">VITAL MEDICINA OCUPACIONAL</option>
