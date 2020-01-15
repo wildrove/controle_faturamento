@@ -73,7 +73,7 @@
 				    	<input type="text" class="form-control"  name="valor" id="" value="<?php echo $rowRevenue['VALOR']; ?>">
 				  	</div>
 				  	<div class="form-group col-md-6">
-				    	<label for="">Possivel Fechamento:</label>
+				    	<label for="">Possivel Pagamento:</label>
 				    	<input type="date" class="form-control"  name="dtPossivelPagamento" id="" value="<?php echo $rowRevenue['DT_POSSIVEL_PAGAMENTO']; ?>">	
 				    </div>
 				  </div><!-- Fim linha 3 -->
@@ -86,7 +86,7 @@
 				    	<label for="">Pago:</label>
 				    	<select name="pago">
 				    		<option class="form-control" value=""></option>
-				    		<option class="form-control" value="SIM">SIM</option>
+				    		<option class="form-control" value="SIM" selected="">SIM</option>
 				    		<option class="form-control" value="NÃO">NÃO</option>
 				    	</select>
 				  	</div>
@@ -94,7 +94,7 @@
 				    	<label for="">Conciliado:</label>
 				    	<select name="conciliado">
 				    		<option class="form-control" value=""></option>
-				    		<option class="form-control" value="SIM">SIM</option>
+				    		<option class="form-control" value="SIM" selected="">SIM</option>
 				    		<option class="form-control" value="NÃO">NÃO</option>
 				    	</select>
 				  	</div>
