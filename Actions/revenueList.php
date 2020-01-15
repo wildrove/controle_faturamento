@@ -76,6 +76,21 @@
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	  <script src="../bootstrap/js/bootstrap.min.js"></script>
+	  <script type='text/javascript'>
+	  	// Função para recarregar automaticamente a lista de faturas
+		(function() {
+		   if( window.localStorage ) {
+
+		      if( !localStorage.getItem( 'firstLoad' ) ) {
+		         localStorage[ 'firstLoad' ] = true;
+		         window.location.reload();
+
+		      } else {
+		         localStorage.removeItem( 'firstLoad' );
+		      }
+		   }
+		})();
+	</script>
 	</head>
 		<body>
 			<nav class="navbar navbar-expand-lg fixed-top navbar-header">
