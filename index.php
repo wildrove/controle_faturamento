@@ -175,6 +175,12 @@
 		</section>	
    	</div>
    	
+   	<?php
+$number = "12,465,23";
+$number = strval(preg_replace('#\D#',"", $number)/100);
+$number = str_replace(".", ",", $number);
+var_dump($number);
+?>
    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

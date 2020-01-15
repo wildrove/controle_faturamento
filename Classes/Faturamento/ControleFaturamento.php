@@ -44,13 +44,16 @@ namespace Classes\Faturamento\ControleFaturamento;
 				$this->nFatura = isset($revenue['nFatura']) ? intval($revenue['nFatura']) : 0;
 				$this->nFaturamento = isset($revenue['nFaturamento']) ? $revenue['nFaturamento'] : "-";
 				$this->dtFechamento = isset($revenue['dtFechamento']) ? $revenue['dtFechamento'] : "00-00-0000";
-				$this->valor = !empty($revenue['valor']) ? $revenue['valor'] : "0";
+				$this->valor = !empty($revenue['valor']) ? strval(preg_replace('#\D#',"", $revenue['valor'])/100) : "0";
+				$this->valor = !empty($this->valor) ? str_replace(".", ",", $this->valor) : "0";
 				$this->dtPossivelPagamento = isset($revenue['dtPossivelPagamento']) ? $revenue['dtPossivelPagamento'] : "00-00-0000";
 				$this->dtPagamento = isset($revenue['dtPagamento']) ? $revenue['dtPagamento'] : "00-00-0000";
 				$this->pago = !empty($revenue['pago']) ? strtoupper($revenue['pago']) : "-";
 				$this->conciliado = !empty($revenue['conciliado']) ? strtoupper($revenue['conciliado']) : "-";
-				$this->valorPago = !empty($revenue['valorPago']) ? $revenue['valorPago'] : "0";
-				$this->valorGlosa = !empty($revenue['valorGlosa']) ? $revenue['valorGlosa'] : "0";
+				$this->valorPago = !empty($revenue['valorPago']) ? strval(preg_replace('#\D#',"", $revenue['valorPago'])/100) : "0";
+				$this->valorPago = !empty($this->valorPago) ? str_replace(".", ",", $this->valorPago) : "0";
+				$this->valorGlosa = !empty($revenue['valorGlosa']) ? strval(preg_replace('#\D#',"", $revenue['valorGlosa'])/100) : "0";
+				$this->valorGlosa = !empty($this->valorGlosa) ? str_replace(".", ",", $this->valorGlosa) : "0";
 			}
 
 
