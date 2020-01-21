@@ -25,21 +25,29 @@
     $revenue = new ControleFaturamento();
     $result = $revenue->exportXls();
     //varremos o array com o foreach para pegar os dados
-    
+    $valor;
+    $vlPag;
+    $vlGlos;
     foreach($result as $res){
+        $valor = strval(preg_replace('#\D#',"", $res['VALOR'])/100);
+        $valor = str_replace(".", ",", $valor);
+        $vlPag = strval(preg_replace('#\D#',"", $res['VL_PAGO'])/100);
+        $vlPag = str_replace(".", ",", $vlPag);
+        $vlGlos = strval(preg_replace('#\D#',"", $res['VL_GLOSA'])/100);
+        $vlGlos = str_replace(".", ",", $vlGlos);
         $dadosXls .= "      <tr>";
         $dadosXls .= "          <td>".$res['ID_CONTROLE']."</td>";
         $dadosXls .= "          <td>".$res['CONVENIO']."</td>";
         $dadosXls .= "          <td>".$res['NUM_FATURA']."</td>";
         $dadosXls .= "          <td>".$res['NUM_FATURAMENTO']."</td>";
         $dadosXls .= "          <td>".$res['DT_FECHAMENTO']."</td>";
-        $dadosXls .= "         <td>".str_replace(".", ",", strval($res['VALOR']))."</td>";
+        $dadosXls .= "         <td>".$valor."</td>";
         $dadosXls .= "         <td>".$res['DT_POSSIVEL_PAGAMENTO']."</td>";
         $dadosXls .= "         <td>".$res['DT_PAGAMENTO']."</td>";
         $dadosXls .= "         <td>".$res['PAGO']."</td>";
         $dadosXls .= "         <td>".$res['CONCILIADO']."</td>";
-        $dadosXls .= "         <td>".str_replace(".", ",", strval($res['VL_PAGO']))."</td>";
-        $dadosXls .= "         <td>".str_replace(".", ",", strval($res['VL_GLOSA']))."</td>";
+        $dadosXls .= "         <td>".$vlPag."</td>";
+        $dadosXls .= "         <td>".$vlGlos."</td>";
         $dadosXls .= "      </tr>";
     }
     $dadosXls .= "  </table>";

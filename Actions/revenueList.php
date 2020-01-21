@@ -221,7 +221,8 @@
 			            <th scope="col" class="border-right">Conciliado</th>
 			            <th scope="col" class="border-right">Valor Pago</th>
 			            <th scope="col" class="border-right">Valor Glosa</th>
-			            <th scope="col" class="border-right">Ação</th>
+			            <th scope="col" class="border-right">Editar</th>
+			            <th scope="col" class="border-right">Excluir</th>
 			          </tr>
 			        </thead>
 			        <tbody>
@@ -247,6 +248,7 @@
 			              <td class="border-right"><?php echo "R$ " . str_replace(".", ",", strval($value['VL_PAGO'])); ?></td>
 			              <td class="border-right"><?php echo "R$ " . str_replace(".", ", " ,strval($value['VL_GLOSA'])); ?></td>
 			              <td class="border-right"><a class="btn btn-warning" href="editRevenue.php?idRevenue=<?php echo $value['ID_CONTROLE']; ?>">Editar</a></td>
+			              <td class="border-right"><a class="btn btn-danger" href="deleteRevenue.php?idRevenue=<?php echo $value['ID_CONTROLE']; ?>">Excluir</a></td>
 			            </tr>
 			            <?php
 			        	}?>

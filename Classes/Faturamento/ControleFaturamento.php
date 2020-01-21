@@ -308,4 +308,25 @@ namespace Classes\Faturamento\ControleFaturamento;
 				return $result;
 			}
 		}
+
+		public function deleteRevenue($idRevenue)
+		{
+			$this->idControle = $idRevenue;
+			$sql = "DELETE FROM controle_faturamento.tb_controle WHERE ID_CONTROLE = ?";
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(1, $this->idControle, PDO::PARAM_INT);
+			$data->execute();
+		}
+		// metodo que pesquisa se o ID foi removido
+		public function selectIdRemoved($idRevenue)
+		{
+			$this->idControle = $idRevenue;	
+			$sql = "SELECT ID_CONTROLE FROM controle_faturamento.tb_controle WHERE ID_CONTROLE = ?";
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(1, $this->idControle, PDO::PARAM_INT);
+			$data->execute();
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+			return count($result);
+		}
 	}
