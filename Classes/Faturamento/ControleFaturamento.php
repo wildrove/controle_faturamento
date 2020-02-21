@@ -204,7 +204,7 @@ namespace Classes\Faturamento\ControleFaturamento;
 
 		public function exportXls()
 		{
-			$sql = "SELECT  * FROM controle_faturamento.tb_controle ORDER BY ID_CONTROLE ASC";
+			$sql = "SELECT  * FROM controle_faturamento.tb_controle ORDER BY CONVENIO, ID_CONTROLE ASC";
 			$data = $this->connection->conn->prepare($sql);
 			$data->execute();
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);
